@@ -143,7 +143,7 @@ export default function PrivacyPage() {
 
           <section className="policy-section" id="children"><h2>10. Children</h2><p>The Services are intended for software professionals and organizations, not children under 13 or the minimum age required by local law. We do not knowingly collect children&apos;s personal information through this website.</p></section>
           <section className="policy-section" id="changes"><h2>11. Changes</h2><p>We may update this policy when Services, providers, or legal requirements change. The revised version and effective date will be posted here. Material changes may also be announced in release notes or another appropriate channel.</p></section>
-          <section className="policy-section" id="contact"><h2>12. Contact</h2><p>For privacy questions or requests, email <a href="mailto:privacy@evoelsewhere.asia">privacy@evoelsewhere.asia</a>. For security vulnerabilities, use the private security reporting channel provided in the relevant Evo Elsewhere GitHub repository.</p><p>This product-operational draft should be reviewed against the final hosting setup, organization identity, contact channels, and applicable law before public launch.</p></section>
+          <section className="policy-section" id="contact"><h2>12. Contact</h2><p>For privacy questions or requests, email <a href="mailto:privacy@evoelsewhere.asia">privacy@evoelsewhere.asia</a>. For security vulnerabilities, use the private security reporting channel provided in the relevant evoelsewhere GitHub repository.</p><p>This product-operational draft should be reviewed against the final hosting setup, organization identity, contact channels, and applicable law before public launch.</p></section>
         </article>
       </div>
 

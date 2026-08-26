@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { permanentRedirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'EASD Methodology — Evo Elsewhere',
+  title: 'EASD Methodology — evoelsewhere',
   robots: { index: false, follow: true },
 };
 

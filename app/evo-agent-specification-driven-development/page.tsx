@@ -161,7 +161,7 @@ export default function EasdPage() {
         </nav>
         <div className="easd-paper-id">
           <img src="/generated/easd-mark-excalidraw.png" alt="EASD methodology logo" width="1254" height="1254" />
-          <span>Evo Elsewhere Research Note · 01</span>
+          <span>evoelsewhere Research Note · 01</span>
         </div>
         <h1>EASD: Evo Agent Specification-Driven Development</h1>
         <div className="easd-paper-meta"><span>Status: normative method</span><span>Product name: Evo Agent Specs</span><span>Revision: 1.0 · August 2026</span></div>

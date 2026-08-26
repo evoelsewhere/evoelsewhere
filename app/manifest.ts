@@ -4,7 +4,7 @@ export const dynamic = 'force-static';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'EvoFlux — Evo Elsewhere',
+    name: 'EvoFlux — evoelsewhere',
     short_name: 'EvoFlux',
     description: 'A local-first desktop workspace for AI agent teams.',
     start_url: '/',
