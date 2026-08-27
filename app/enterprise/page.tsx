@@ -5,7 +5,7 @@ import { FiActivity, FiBox, FiGitBranch, FiLock, FiRefreshCw, FiShield, FiUsers 
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/seo';
 
-const title = 'EvoFlux Enterprise: Evo Conductor Control Plane';
+const title = 'EvoFlux for Teams: Evo Conductor Control Plane';
 const description = 'See how Evo Conductor governs identity, resources, policy, delivery, and privacy-safe operations while EvoFlux executes AI agent work inside each team’s local workspace.';
 const canonicalPath = '/enterprise';
 const socialImage = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     publishedTime: '2026-08-27T00:00:00.000Z',
     modifiedTime: '2026-08-27T00:00:00.000Z',
-    section: 'Enterprise AI agent architecture',
+    section: 'AI agent governance for teams',
     images: [socialImage],
   },
   twitter: { card: 'summary_large_image', title: `${title} | EvoFlux`, description, images: [socialImage.url] },
@@ -42,7 +42,7 @@ const toc = [
   ['identity', 'Identity & access'],
   ['operations', 'Operations & privacy'],
   ['local', 'Local execution'],
-  ['easd', 'Enterprise EASD'],
+  ['easd', 'Federated EASD'],
   ['deployment', 'Deployment boundaries'],
   ['outcomes', 'What teams gain'],
   ['status', 'Current vs target state'],
@@ -54,7 +54,7 @@ const faqItems = [
   ['Does Evo Conductor upload source code or prompts?', 'Not by default. Source repositories, prompts, model responses, tool arguments, session transcripts, and local files remain in the EvoFlux execution boundary. Conductor receives governed resource bundles, inventory, presence, delivery state, and bounded operational outcome metadata.'],
   ['How do approved resources reach EvoFlux?', 'Conductor sends a lightweight SSE invalidation. EvoFlux then performs an authenticated smart fetch, downloads only missing immutable objects, verifies the complete staged tree, and atomically activates the new generation while preserving the last-known-good version on failure.'],
   ['What can administrators govern?', 'Administrators can govern membership, primary and sub-roles, tags, scoped connection secrets, resource lifecycle and access rules, storage providers, SSO, telemetry level, delivery state, and retention according to the organization’s deployment policy.'],
-  ['Is cross-team Enterprise EASD fully implemented?', 'The core Conductor control plane is implemented, while the EvoFlux realtime client integration is pending. The multi-squad, multi-repository Enterprise EASD federation model is documented as a target state and is not presented as a completed product capability.'],
+  ['Is cross-team EASD fully implemented?', 'The core Conductor control plane is implemented, while the EvoFlux realtime client integration is pending. The multi-squad, multi-repository EASD federation model is documented as a target state and is not presented as a completed product capability.'],
 ];
 
 const structuredData = {
@@ -74,13 +74,13 @@ const structuredData = {
       isAccessibleForFree: true,
       author: { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
-      about: ['Enterprise AI agent governance', 'Local-first execution', 'Evo Conductor', 'EvoFlux'],
+      about: ['AI agent governance for teams', 'Local-first execution', 'Evo Conductor', 'EvoFlux'],
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'EvoFlux', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Enterprise', item: `${SITE_URL}${canonicalPath}` },
+        { '@type': 'ListItem', position: 2, name: 'Teams', item: `${SITE_URL}${canonicalPath}` },
       ],
     },
     {
@@ -97,7 +97,7 @@ export default function EnterprisePage() {
       <SiteHeader />
 
       <header className="easd-paper-header enterprise-paper-header shell">
-        <nav className="easd-breadcrumb" aria-label="Breadcrumb"><Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">Enterprise</span></nav>
+        <nav className="easd-breadcrumb" aria-label="Breadcrumb"><Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">Teams</span></nav>
         <div className="easd-paper-id"><span className="enterprise-mark" aria-hidden="true">EC</span><span>evoelsewhere Architecture Brief · 01</span></div>
         <h1>Govern centrally.<br />Execute locally.</h1>
         <div className="easd-paper-meta"><span>System: Evo Conductor + EvoFlux</span><span>Scope: teams · projects · governed resources</span><span>Revision: 1.0 · August 2026</span></div>
@@ -115,10 +115,10 @@ export default function EnterprisePage() {
         <figcaption><strong>Figure 1.</strong> One control plane distributes approved policy and resources; multiple EvoFlux installations execute within separate local workspaces and return bounded operational outcomes.</figcaption>
       </figure>
 
-      <section className="easd-manifesto enterprise-manifesto"><div className="shell"><blockquote>“Central governance is useful only when local execution remains explicit, bounded, and inspectable.”<cite>Enterprise control boundary</cite></blockquote></div></section>
+      <section className="easd-manifesto enterprise-manifesto"><div className="shell"><blockquote>“Central governance is useful only when local execution remains explicit, bounded, and inspectable.”<cite>Team control boundary</cite></blockquote></div></section>
 
       <div className="easd-layout shell">
-        <aside className="easd-toc" aria-label="Enterprise architecture contents"><strong>Brief contents</strong>{toc.map(([id, label], index) => <a href={`#${id}`} key={id}><span>{String(index + 1).padStart(2, '0')}</span>{label}</a>)}</aside>
+        <aside className="easd-toc" aria-label="Team architecture contents"><strong>Brief contents</strong>{toc.map(([id, label], index) => <a href={`#${id}`} key={id}><span>{String(index + 1).padStart(2, '0')}</span>{label}</a>)}</aside>
 
         <article className="easd-content enterprise-content">
           <section className="easd-section" id="system">
@@ -181,15 +181,15 @@ export default function EnterprisePage() {
             <p className="section-tag">06 / Local execution</p>
             <h2>Governance arrives.<br />Work stays close.</h2>
             <p className="easd-lede">An EvoFlux member can receive an approved agent team or skill bundle, then use it inside an explicitly attached repository and local permission boundary. Conductor cannot make a local path available when EvoFlux has not authorized it.</p>
-            <figure className="enterprise-demo-figure enterprise-evoflux-figure"><img src="/showcase/evoflux-light-coding-easd.png" width="1634" height="1057" loading="lazy" alt="Actual EvoFlux light-theme coding workspace with a local repository and Enterprise EASD setup panel" /><figcaption><strong>Actual EvoFlux UI.</strong> The governed method is installed into authorized repositories; agents execute locally with repository, tool, sandbox, and user-approval controls intact.</figcaption></figure>
+            <figure className="enterprise-demo-figure enterprise-evoflux-figure"><img src="/showcase/evoflux-light-coding-easd.png" width="1634" height="1057" loading="lazy" alt="Actual EvoFlux light-theme coding workspace with a local repository and federated EASD setup panel" /><figcaption><strong>Actual EvoFlux UI.</strong> The governed method is installed into authorized repositories; agents execute locally with repository, tool, sandbox, and user-approval controls intact.</figcaption></figure>
           </section>
 
           <section className="easd-section" id="easd">
-            <p className="section-tag">07 / Enterprise EASD target state</p>
+            <p className="section-tag">07 / Federated EASD target state</p>
             <h2>Federate execution.<br />Keep intent and evidence traceable.</h2>
-            <p className="easd-lede">The proposed Enterprise EASD control model extends local EASD across squads, repositories, shared contracts, assurance roles, and release streams. It is a documented target state—not a claim that program-level orchestration is already shipped.</p>
-            <div className="enterprise-hierarchy"><div><span>01</span><strong>Enterprise policy</strong><p>Risk, evidence, separation-of-duty, and waiver rules.</p></div><div><span>02</span><strong>Initiative contract</strong><p>Cross-team outcome, non-goals, ACs, owners, and baseline.</p></div><div><span>03</span><strong>Project EASD runs</strong><p>Accepted local specs, plans, missions, evidence, and deviations.</p></div><div><span>04</span><strong>Program convergence</strong><p>All required projects and cross-team gates bound to exact artifacts.</p></div></div>
-            <div className="easd-callout"><strong>Precedence</strong><p>Enterprise policy may narrow local authority and add gates. It may not silently rewrite accepted product intent, grant broader repository access, or relabel a failed review as machine evidence.</p></div>
+            <p className="easd-lede">The proposed federated EASD control model extends local EASD across squads, repositories, shared contracts, assurance roles, and release streams. It is a documented target state—not a claim that program-level orchestration is already shipped.</p>
+            <div className="enterprise-hierarchy"><div><span>01</span><strong>Organization policy</strong><p>Risk, evidence, separation-of-duty, and waiver rules.</p></div><div><span>02</span><strong>Initiative contract</strong><p>Cross-team outcome, non-goals, ACs, owners, and baseline.</p></div><div><span>03</span><strong>Project EASD runs</strong><p>Accepted local specs, plans, missions, evidence, and deviations.</p></div><div><span>04</span><strong>Program convergence</strong><p>All required projects and cross-team gates bound to exact artifacts.</p></div></div>
+            <div className="easd-callout"><strong>Precedence</strong><p>Organization policy may narrow local authority and add gates. It may not silently rewrite accepted product intent, grant broader repository access, or relabel a failed review as machine evidence.</p></div>
           </section>
 
           <section className="easd-section" id="deployment">
@@ -212,17 +212,17 @@ export default function EnterprisePage() {
           <section className="easd-section" id="status">
             <p className="section-tag">10 / Current capability and roadmap</p>
             <h2>State the boundary honestly.</h2>
-            <div className="enterprise-status-list"><article><span className="is-current">Implemented</span><h3>Evo Conductor control plane</h3><p>Web console, member and role governance, scoped secrets, catalog lifecycle, access rules, resource artifacts, SSE invalidation, smart-fetch APIs, inventory, presence, telemetry, outcome attribution, feedback, and storage providers.</p></article><article><span className="is-integration">Integration pending</span><h3>EvoFlux realtime client</h3><p>The Conductor contracts and endpoints are implemented. EvoFlux still needs the production client path that subscribes, smart-fetches, verifies, atomically activates, inventories, and reports governed outcomes.</p></article><article><span className="is-target">Target state</span><h3>Enterprise EASD federation</h3><p>Portfolio intake, cross-project initiative graphs, enterprise evidence admission, program convergence, and release-baseline orchestration are documented methodology and architecture targets.</p></article></div>
+            <div className="enterprise-status-list"><article><span className="is-current">Implemented</span><h3>Evo Conductor control plane</h3><p>Web console, member and role governance, scoped secrets, catalog lifecycle, access rules, resource artifacts, SSE invalidation, smart-fetch APIs, inventory, presence, telemetry, outcome attribution, feedback, and storage providers.</p></article><article><span className="is-integration">Integration pending</span><h3>EvoFlux realtime client</h3><p>The Conductor contracts and endpoints are implemented. EvoFlux still needs the production client path that subscribes, smart-fetches, verifies, atomically activates, inventories, and reports governed outcomes.</p></article><article><span className="is-target">Target state</span><h3>Federated EASD orchestration</h3><p>Portfolio intake, cross-project initiative graphs, organization-wide evidence admission, program convergence, and release-baseline orchestration are documented methodology and architecture targets.</p></article></div>
           </section>
 
           <section className="easd-section" id="faq">
-            <p className="section-tag">11 / Questions</p><h2>Enterprise FAQ.</h2>
+            <p className="section-tag">11 / Questions</p><h2>Teams FAQ.</h2>
             <div className="easd-faq">{faqItems.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div>
           </section>
         </article>
       </div>
 
-      <section className="easd-closing enterprise-closing shell"><div><p className="section-tag">Enterprise operating rule</p><h2>Govern what must be shared.<br />Keep execution where work happens.</h2></div><div className="enterprise-closing-actions"><Link href="/#download" className="button primary">Download EvoFlux ↓</Link><a href="https://github.com/evoelsewhere/evo-conductor" className="button secondary">View Conductor ↗</a></div></section>
+      <section className="easd-closing enterprise-closing shell"><div><p className="section-tag">Team operating rule</p><h2>Govern what must be shared.<br />Keep execution where work happens.</h2></div><div className="enterprise-closing-actions"><Link href="/#download" className="button primary">Download EvoFlux ↓</Link><a href="https://github.com/evoelsewhere/evo-conductor" className="button secondary">View Conductor ↗</a></div></section>
       <SiteFooter />
     </main>
   );

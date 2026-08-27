@@ -20,7 +20,7 @@ export function SiteHeader() {
       <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
       <nav className={open ? 'header-nav open' : 'header-nav'} aria-label="Primary navigation">
         <Link href="/#features" onClick={() => setOpen(false)}>Features</Link>
-        <Link href="/enterprise" onClick={() => setOpen(false)}>Enterprise</Link>
+        <Link href="/enterprise" onClick={() => setOpen(false)}>Teams</Link>
         <Link href="/evo-agent-specification-driven-development" onClick={() => setOpen(false)}>EASD</Link>
         <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
         <a href="https://github.com/evoelsewhere">GitHub</a>
@@ -41,7 +41,7 @@ export function SiteFooter() {
       <nav aria-label="Footer navigation">
         <a href="https://github.com/evoelsewhere/evoflux">EvoFlux</a>
         <a href="https://github.com/evoelsewhere/evo-conductor">Conductor</a>
-        <Link href="/enterprise">Enterprise</Link>
+        <Link href="/enterprise">Teams</Link>
         <Link href="/evo-agent-specification-driven-development">EASD</Link>
         <Link href="/privacy">Privacy</Link>
       </nav>
