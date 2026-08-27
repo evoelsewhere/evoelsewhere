@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FiDownload, FiGithub } from 'react-icons/fi';
 
 import { DownloadPanel } from '@/components/download-panel';
+import { HeroActions } from '@/components/hero-actions';
 import { ProductTour } from '@/components/product-tour';
 import { ProviderMarquee } from '@/components/provider-marquee';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
@@ -54,10 +54,7 @@ export default function Home() {
           <div className="eyebrow"><i /> open-source · local-first · desktop</div>
           <h1>Your agent team.<br /><em>On your machine.</em></h1>
           <p className="hero-copy">Start with an outcome. Approve the specification. EvoFlux coordinates specialists to implement, test, review, and converge on evidence—while you stay in control.</p>
-          <div className="hero-actions">
-            <a className="button primary hero-download-button" href="#download"><span className="button-label"><FiDownload aria-hidden="true" /><span>Choose your platform</span></span><span className="button-arrow" aria-hidden="true">↓</span></a>
-            <a className="button secondary hero-source-button" href="https://github.com/evoelsewhere/evoflux"><span className="button-label"><FiGithub aria-hidden="true" /><span>Explore the source</span></span><span className="button-arrow" aria-hidden="true">↗</span></a>
-          </div>
+          <HeroActions />
           <p className="platforms">Work + Coding agents&nbsp;&nbsp; / &nbsp;&nbsp;Any model&nbsp;&nbsp; / &nbsp;&nbsp;Your machine</p>
         </div>
         <div className="hero-visual-column">
