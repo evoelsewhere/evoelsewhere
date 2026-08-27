@@ -73,7 +73,6 @@ export function ReleaseAnnouncement() {
 
         <div className="release-modal-visual">
           <div className="release-modal-stamp"><span>First stable release</span><strong>1.0.0</strong></div>
-          <img src="/generated/evoflux-v1-launch.png" width="1254" height="1254" alt="Illustration of EvoFlux specifications, agent teams, providers, coding intelligence, and verified delivery" />
         </div>
 
         <div className="release-modal-content">
