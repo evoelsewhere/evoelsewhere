@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { ReleaseAnnouncement } from '@/components/release-announcement';
 import { absoluteUrl, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 
 import './globals.css';
@@ -88,6 +89,8 @@ const structuredData = {
       url: SITE_URL,
       image: absoluteUrl('/og.png'),
       downloadUrl: `${SITE_URL}/#download`,
+      softwareVersion: '1.0.0',
+      releaseNotes: 'https://github.com/evoelsewhere/evoflux/releases/tag/v1.0.0',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'macOS, Windows, Linux',
       author: { '@id': `${SITE_URL}/#organization` },
@@ -116,6 +119,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
+        <ReleaseAnnouncement />
         {children}
       </body>
     </html>
