@@ -125,11 +125,23 @@ main::after { content: ''; position: absolute; z-index: -2; inset: 0; background
 .hero h1 { margin: 23px 0 18px; font-size: clamp(44px, 5vw, 64px); line-height: .98; letter-spacing: -.064em; font-weight: 660; }
 .hero h1 em { font-style: normal; color: transparent; background: linear-gradient(105deg, var(--coral), var(--violet) 50%, var(--blue)); background-clip: text; -webkit-background-clip: text; }
 .hero-copy { max-width: 590px; margin: 0; color: var(--ink-soft); font-size: clamp(17px, 1.75vw, 20px); line-height: 1.55; letter-spacing: -.018em; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 29px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 29px; }
 .button { min-height: 48px; padding: 0 19px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-size: 14px; font-weight: 630; transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease; }
 .button:hover { transform: translateY(-2px); }
 .button.primary { border: 1px solid var(--ink); background: var(--ink); color: var(--page); box-shadow: 0 12px 24px rgb(0 0 0 / .14); }
 .button.secondary { border: 1px solid var(--rule); background: rgb(255 255 255 / .7); backdrop-filter: blur(12px); }
+.hero-actions .button { min-height: 50px; padding: 5px 6px 5px 17px; justify-content: space-between; gap: 16px; border-radius: 13px; font-size: 14px; letter-spacing: -.01em; box-shadow: none; transition: transform 180ms cubic-bezier(.2,.8,.2,1), border-color 180ms ease, background-color 180ms ease; }
+.hero-actions .button.primary { border-color: #20221f; background: linear-gradient(180deg, #1d1f1c 0%, #141613 100%); color: #f7f7f3; box-shadow: 0 8px 18px rgb(21 22 21 / .12), inset 0 1px 0 rgb(255 255 255 / .08); }
+.hero-actions .button.secondary { border-color: #d2d6ce; background: rgb(255 255 255 / .48); color: var(--ink-2); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); backdrop-filter: blur(10px); }
+.hero-actions .button:hover { transform: translateY(-1px); }
+.hero-actions .button.primary:hover { background: linear-gradient(180deg, #242723 0%, #171916 100%); box-shadow: 0 10px 22px rgb(21 22 21 / .15), inset 0 1px 0 rgb(255 255 255 / .09); }
+.hero-actions .button.secondary:hover { border-color: #bfc5ba; background: rgb(255 255 255 / .72); }
+.hero-actions .button:focus-visible { outline: 3px solid rgb(90 143 229 / .24); outline-offset: 3px; }
+.button-arrow { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 9px; font-size: 15px; line-height: 1; transition: transform 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms ease; }
+.hero-actions .primary .button-arrow { background: rgb(255 255 255 / .1); color: #fff; }
+.hero-actions .secondary .button-arrow { background: rgb(21 22 21 / .055); color: var(--ink); }
+.hero-actions .hero-download-button:hover .button-arrow { transform: translateY(2px); background: rgb(255 255 255 / .14); }
+.hero-actions .hero-source-button:hover .button-arrow { transform: translate(2px, -2px); background: rgb(21 22 21 / .08); }
 .platforms { margin: 18px 0 0; color: var(--ink-faint); font: 500 10px/1.5 var(--font-geist-mono), monospace; }
 .hero-copy-column { min-width: 0; }
 .hero-visual-column { position: relative; min-width: 0; }
@@ -428,7 +440,7 @@ main::after { content: ''; position: absolute; z-index: -2; inset: 0; background
   .hero h1 { font-size: clamp(42px, 12.5vw, 54px); }
   .hero-copy { font-size: 16px; }
   .hero-actions { flex-direction: column; }
-  .hero-actions .button { width: 100%; }
+  .hero-actions .button { width: 100%; padding-left: 16px; }
   .platforms { max-width: 330px; margin-inline: auto; }
   .hero-showcase { border-radius: 13px; }
   .hero-showcase img { border-width: 5px; border-radius: 12px 12px 7px 7px; }
