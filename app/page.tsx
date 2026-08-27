@@ -124,7 +124,7 @@ export default function Home() {
             <p className="section-tag">05 / Scale with governance</p>
             <h2>Personal execution.<br />Organizational control.</h2>
             <p>EvoFlux is the workspace. Evo Conductor is the control plane for teams that need approved resources, role policies, realtime delivery, and effectiveness data.</p>
-            <a className="text-link" href="https://github.com/evoelsewhere/evo-conductor">Explore Evo Conductor ↗</a>
+            <Link className="text-link" href="/enterprise">See the enterprise architecture →</Link>
           </div>
           <div className="conductor-points">
             <article><span>Catalog</span><strong>Agents, skills, MCP</strong><p>Publish versioned capabilities once and distribute them safely.</p></article>
