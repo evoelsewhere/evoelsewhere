@@ -137,6 +137,10 @@ main::after { content: ''; position: absolute; z-index: -2; inset: 0; background
 .hero-actions .button.primary:hover { background: linear-gradient(180deg, #242723 0%, #171916 100%); box-shadow: 0 10px 22px rgb(21 22 21 / .15), inset 0 1px 0 rgb(255 255 255 / .09); }
 .hero-actions .button.secondary:hover { border-color: #bfc5ba; background: rgb(255 255 255 / .72); }
 .hero-actions .button:focus-visible { outline: 3px solid rgb(90 143 229 / .24); outline-offset: 3px; }
+.button-label { display: inline-flex; align-items: center; gap: 8px; }
+.button-label svg { width: 16px; height: 16px; flex: 0 0 16px; stroke-width: 1.8; }
+.hero-download-button .button-label svg { color: #91d4b3; }
+.hero-source-button .button-label svg { color: #6f65ba; }
 .button-arrow { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 9px; font-size: 15px; line-height: 1; transition: transform 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms ease; }
 .hero-actions .primary .button-arrow { background: rgb(255 255 255 / .1); color: #fff; }
 .hero-actions .secondary .button-arrow { background: rgb(21 22 21 / .055); color: var(--ink); }
