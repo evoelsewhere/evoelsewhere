@@ -98,7 +98,7 @@ export default function EnterprisePage() {
 
       <header className="easd-paper-header enterprise-paper-header shell">
         <nav className="easd-breadcrumb" aria-label="Breadcrumb"><Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">Teams</span></nav>
-        <div className="easd-paper-id"><span className="enterprise-mark" aria-hidden="true">EC</span><span>evoelsewhere Architecture Brief · 01</span></div>
+        <div className="easd-paper-id"><img className="enterprise-mark" src="/generated/conductor-team-mark.png" width="1254" height="1254" alt="Evo Conductor team architecture mark" /><span>evoelsewhere Architecture Brief · 01</span></div>
         <h1>Govern centrally.<br />Execute locally.</h1>
         <div className="easd-paper-meta"><span>System: Evo Conductor + EvoFlux</span><span>Scope: teams · projects · governed resources</span><span>Revision: 1.0 · August 2026</span></div>
         <section className="easd-abstract" aria-labelledby="enterprise-abstract-title">
