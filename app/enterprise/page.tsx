@@ -5,9 +5,9 @@ import { FiActivity, FiBox, FiGitBranch, FiLock, FiRefreshCw, FiShield, FiUsers 
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/seo';
 
-const title = 'EvoFlux for Teams: Evo Conductor Control Plane';
-const description = 'See how Evo Conductor governs identity, resources, policy, delivery, and privacy-safe operations while EvoFlux executes AI agent work inside each team’s local workspace.';
-const canonicalPath = '/enterprise';
+const title = 'EvoFlux Governance: Evo Conductor Control Plane';
+const description = 'See how Evo Conductor governs identity, resources, policy, delivery, and privacy-safe operations while EvoFlux executes AI agent work inside each local workspace.';
+const canonicalPath = '/governance';
 const socialImage = {
   url: '/generated/enterprise-conductor-evoflux-architecture.png',
   width: 1536,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: canonicalPath },
-  keywords: ['EvoFlux Enterprise', 'Evo Conductor', 'AI agent governance', 'enterprise AI agents', 'local-first AI', 'agent resource catalog', 'AI agent observability', 'enterprise EASD'],
+  keywords: ['EvoFlux Governance', 'Evo Conductor', 'AI agent governance', 'governed AI agents', 'local-first AI', 'agent resource catalog', 'AI agent observability', 'EASD governance'],
   openGraph: {
     type: 'article',
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     publishedTime: '2026-08-27T00:00:00.000Z',
     modifiedTime: '2026-08-27T00:00:00.000Z',
-    section: 'AI agent governance for teams',
+    section: 'AI agent governance',
     images: [socialImage],
   },
   twitter: { card: 'summary_large_image', title: `${title} | EvoFlux`, description, images: [socialImage.url] },
@@ -74,13 +74,13 @@ const structuredData = {
       isAccessibleForFree: true,
       author: { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
-      about: ['AI agent governance for teams', 'Local-first execution', 'Evo Conductor', 'EvoFlux'],
+      about: ['AI agent governance', 'Local-first execution', 'Evo Conductor', 'EvoFlux'],
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'EvoFlux', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Teams', item: `${SITE_URL}${canonicalPath}` },
+        { '@type': 'ListItem', position: 2, name: 'Governance', item: `${SITE_URL}${canonicalPath}` },
       ],
     },
     {
@@ -97,7 +97,7 @@ export default function EnterprisePage() {
       <SiteHeader />
 
       <header className="easd-paper-header enterprise-paper-header shell">
-        <nav className="easd-breadcrumb" aria-label="Breadcrumb"><Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">Teams</span></nav>
+        <nav className="easd-breadcrumb" aria-label="Breadcrumb"><Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">Governance</span></nav>
         <div className="easd-paper-id"><img className="enterprise-mark" src="/generated/conductor-team-mark.png" width="1254" height="1254" alt="Evo Conductor team architecture mark" /><span>evoelsewhere Architecture Brief · 01</span></div>
         <h1>Govern centrally.<br />Execute locally.</h1>
         <div className="easd-paper-meta"><span>System: Evo Conductor + EvoFlux</span><span>Scope: teams · projects · governed resources</span><span>Revision: 1.0 · August 2026</span></div>
@@ -216,13 +216,13 @@ export default function EnterprisePage() {
           </section>
 
           <section className="easd-section" id="faq">
-            <p className="section-tag">11 / Questions</p><h2>Teams FAQ.</h2>
+            <p className="section-tag">11 / Questions</p><h2>Governance FAQ.</h2>
             <div className="easd-faq">{faqItems.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div>
           </section>
         </article>
       </div>
 
-      <section className="easd-closing enterprise-closing shell"><div><p className="section-tag">Team operating rule</p><h2>Govern what must be shared.<br />Keep execution where work happens.</h2></div><div className="enterprise-closing-actions"><Link href="/#download" className="button primary">Download EvoFlux ↓</Link><a href="https://github.com/evoelsewhere/evo-conductor" className="button secondary">View Conductor ↗</a></div></section>
+      <section className="easd-closing enterprise-closing shell"><div><p className="section-tag">Governance operating rule</p><h2>Govern what must be shared.<br />Keep execution where work happens.</h2></div><div className="enterprise-closing-actions"><Link href="/#download" className="button primary">Download EvoFlux ↓</Link><a href="https://github.com/evoelsewhere/evo-conductor" className="button secondary">View Conductor ↗</a></div></section>
       <SiteFooter />
     </main>
   );

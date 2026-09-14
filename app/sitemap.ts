@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: absoluteUrl('/enterprise'),
+      url: absoluteUrl('/governance'),
       lastModified: new Date('2026-08-27'),
       changeFrequency: 'monthly',
       priority: 0.9,
