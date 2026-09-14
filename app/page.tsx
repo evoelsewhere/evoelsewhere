@@ -59,7 +59,7 @@ export default function Home() {
         </div>
         <div className="hero-visual-column">
           <figure className="hero-system-visual">
-            <img src="/generated/hero-agent-flow-seamless.png" alt="Excalidraw workflow from a request through a lead, plan, parallel specialists, evidence, and result" width="1568" height="1003" />
+            <img src="/generated/dark/hero-agent-flow-seamless-transparent.png" alt="Excalidraw workflow from a request through a lead, plan, parallel specialists, evidence, and result" width="1568" height="1003" />
           </figure>
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function Home() {
             </ul>
           </div>
           <figure className="excalidraw-figure">
-            <img src="/generated/local-first-excalidraw-site-bg.png" alt="Excalidraw diagram showing local files, memory, and runtime connected to models, tools, and browser through a permissions boundary" />
+            <img src="/generated/dark/local-first-excalidraw-site-bg-transparent.png" alt="Excalidraw diagram showing local files, memory, and runtime connected to models, tools, and browser through a permissions boundary" />
             <figcaption>Architecture sketch · the control boundary stays explicit</figcaption>
           </figure>
         </div>
@@ -111,7 +111,7 @@ export default function Home() {
           <div className="heading-action"><p>EASD keeps every result connected to its original intent and the evidence that proves it.</p><Link href="/evo-agent-specification-driven-development">Read the methodology →</Link></div>
         </div>
         <div className="method-card">
-          <figure><img src="/generated/easd-excalidraw-site-bg.png" alt="Excalidraw diagram of Outcome, Spec, parallel Missions, Evidence, Verified, and a rework loop" /></figure>
+          <figure><img src="/generated/dark/easd-excalidraw-site-bg-transparent.png" alt="Excalidraw diagram of Outcome, Spec, parallel Missions, Evidence, Verified, and a rework loop" /></figure>
           <ol>
             {methodSteps.map(([title, copy], index) => <li key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}
           </ol>

@@ -2,10 +2,14 @@
 
 import Link from 'next/link';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ThemeToggle() {
   const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setDark(document.documentElement.dataset.theme === 'dark');
+  }, []);
 
   function toggleTheme() {
     const next = !dark;

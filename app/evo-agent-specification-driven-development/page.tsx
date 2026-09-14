@@ -160,7 +160,7 @@ export default function EasdPage() {
           <Link href="/">EvoFlux</Link><span aria-hidden="true">/</span><span aria-current="page">EASD methodology</span>
         </nav>
         <div className="easd-paper-id">
-          <img src="/generated/easd-mark-excalidraw.png" alt="EASD methodology logo" width="1254" height="1254" />
+          <img src="/generated/dark/easd-mark-excalidraw-transparent.png" alt="EASD methodology logo" width="1254" height="1254" />
           <span>evoelsewhere Research Note · 01</span>
         </div>
         <h1>EASD: Evo Agent Specification-Driven Development</h1>
@@ -178,7 +178,7 @@ export default function EasdPage() {
       </header>
 
       <figure className="easd-paper-figure shell">
-        <img src="/generated/easd-excalidraw-site-bg.png" alt="EASD AI agent workflow showing accepted outcome and specification, parallel bounded missions, typed evidence, verified completion, and rework" width="1774" height="887" fetchPriority="high" />
+        <img src="/generated/dark/easd-excalidraw-site-bg-transparent.png" alt="EASD AI agent workflow showing accepted outcome and specification, parallel bounded missions, typed evidence, verified completion, and rework" width="1774" height="887" fetchPriority="high" />
         <figcaption><strong>Figure 1.</strong> The EASD execution loop: accepted outcome and specification are decomposed into bounded missions, challenged with evidence, and either verified or returned for rework.</figcaption>
       </figure>
 
@@ -307,7 +307,7 @@ deviations[]`}</pre><p>Changed files without a passing runtime CompletionContrac
           <section className="easd-section" id="evidence">
             <p className="section-tag">07 / Evidence and convergence</p>
             <h2>Proof keeps its type and provenance.</h2>
-            <figure className="easd-evidence-figure"><img src="/generated/easd-evidence-gates-excalidraw.png" alt="EASD evidence model showing machine, review, manual, and waiver evidence feeding acceptance criteria and convergence gates" width="1536" height="1024" loading="lazy" /><figcaption><strong>Figure 2.</strong> Typed evidence feeds the AC matrix. Convergence gates yield either a computed Done verdict or structured rework.</figcaption></figure>
+            <figure className="easd-evidence-figure"><img src="/generated/dark/easd-evidence-gates-excalidraw-transparent.png" alt="EASD evidence model showing machine, review, manual, and waiver evidence feeding acceptance criteria and convergence gates" width="1536" height="1024" loading="lazy" /><figcaption><strong>Figure 2.</strong> Typed evidence feeds the AC matrix. Convergence gates yield either a computed Done verdict or structured rework.</figcaption></figure>
             <div className="easd-table-wrap"><table><thead><tr><th>Kind</th><th>Producer</th><th>Trust and use</th></tr></thead><tbody><tr><td><code>machine</code></td><td>EvoFlux runtime</td><td>Process result bound to command IDs and artifact or revision</td></tr><tr><td><code>review</code></td><td>Independent agent or human</td><td>Concrete inspection evidence with provenance</td></tr><tr><td><code>manual</code></td><td>User or lead</td><td>Explicit observation; never promoted to machine evidence</td></tr><tr><td><code>waiver</code></td><td>Authorized human</td><td>Accepts an unmet AC with a visible reason</td></tr></tbody></table></div>
             <div className="easd-callout"><strong>Trust boundary</strong><p>Public API and UI callers cannot manufacture machine evidence. Failed and inconclusive evidence remains in the ledger even after later success.</p></div>
             <h3 className="easd-subhead">Deviation contract</h3><p>A deviation records the originating spec hash, affected AC or mission, description, blocking state, proposed change, and resolution. Normative change requires a new accepted revision; the same hash may resolve only an explicitly non-normative clarification.</p>

@@ -52,6 +52,11 @@ html[data-theme='dark'] .release-modal-close:hover { background:rgb(255 255 255 
 html[data-theme='dark'] .release-modal-highlights, html[data-theme='dark'] .release-modal-highlights article { border-color:#3e463e; }
 html[data-theme='dark'] .release-modal-secondary { border-color:#4b534b; background:rgb(255 255 255 / .06); color:#d9ddd5; }
 html[data-theme='dark'] .release-modal-secondary:hover { background:rgb(255 255 255 / .12); }
+html[data-theme='dark'] .hero-system-visual img,
+html[data-theme='dark'] .excalidraw-figure img,
+html[data-theme='dark'] .method-card img,
+html[data-theme='dark'] .easd-page .easd-paper-figure img,
+html[data-theme='dark'] .easd-page .easd-evidence-figure img { mix-blend-mode: normal; }
 @font-face {
   font-family: "DM Sans Variable";
   src: url("/fonts/dm-sans-latin-wght-normal.woff2") format("woff2-variations");
