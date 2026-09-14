@@ -1,7 +1,29 @@
 'use client';
 
 import Link from 'next/link';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { useState } from 'react';
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+
+  function toggleTheme() {
+    const next = !dark;
+    document.documentElement.dataset.theme = next ? 'dark' : 'light';
+    try {
+      window.localStorage.setItem('evoelsewhere-theme', next ? 'dark' : 'light');
+    } catch {
+      // Keep the toggle usable when browser storage is unavailable.
+    }
+    setDark(next);
+  }
+
+  return (
+    <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
+      {dark ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
+    </button>
+  );
+}
 
 export function Brand() {
   return (
@@ -25,6 +47,7 @@ export function SiteHeader() {
         <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
         <a href="https://github.com/evoelsewhere">GitHub</a>
         <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Download ↘</Link>
+        <ThemeToggle />
       </nav>
       <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
         <span /><span />

@@ -23,13 +23,13 @@ const latestReleaseApi = 'https://api.github.com/repos/evoelsewhere/evoflux/rele
 const trustedDownloadPrefix = 'https://github.com/evoelsewhere/evoflux/releases/download/';
 
 const fallbackRelease: GithubRelease = {
-  tag_name: 'v0.0.8',
-  html_url: `${releasesUrl}/tag/v0.0.8`,
+  tag_name: 'v2.0.1',
+  html_url: `${releasesUrl}/tag/v2.0.1`,
   assets: [
-    { name: 'EvoFlux_0.0.8_aarch64.dmg', browser_download_url: `${releasesUrl}/download/v0.0.8/EvoFlux_0.0.8_aarch64.dmg`, size: 260318641 },
-    { name: 'EvoFlux_0.0.8_x64.dmg', browser_download_url: `${releasesUrl}/download/v0.0.8/EvoFlux_0.0.8_x64.dmg`, size: 234778884 },
-    { name: 'EvoFlux_0.0.8_x64-setup.exe', browser_download_url: `${releasesUrl}/download/v0.0.8/EvoFlux_0.0.8_x64-setup.exe`, size: 113261767 },
-    { name: 'EvoFlux_0.0.8_amd64.deb', browser_download_url: `${releasesUrl}/download/v0.0.8/EvoFlux_0.0.8_amd64.deb`, size: 229649012 },
+    { name: 'EvoFlux_2.0.1_aarch64.dmg', browser_download_url: `${releasesUrl}/download/v2.0.1/EvoFlux_2.0.1_aarch64.dmg`, size: 0 },
+    { name: 'EvoFlux_2.0.1_x64.dmg', browser_download_url: `${releasesUrl}/download/v2.0.1/EvoFlux_2.0.1_x64.dmg`, size: 0 },
+    { name: 'EvoFlux_2.0.1_x64-setup.exe', browser_download_url: `${releasesUrl}/download/v2.0.1/EvoFlux_2.0.1_x64-setup.exe`, size: 0 },
+    { name: 'EvoFlux_2.0.1_amd64.deb', browser_download_url: `${releasesUrl}/download/v2.0.1/EvoFlux_2.0.1_amd64.deb`, size: 0 },
   ],
 };
 

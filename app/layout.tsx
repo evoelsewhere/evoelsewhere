@@ -89,8 +89,8 @@ const structuredData = {
       url: SITE_URL,
       image: absoluteUrl('/og.png'),
       downloadUrl: `${SITE_URL}/#download`,
-      softwareVersion: '1.0.0',
-      releaseNotes: 'https://github.com/evoelsewhere/evoflux/releases/tag/v1.0.0',
+      softwareVersion: '2.0.1',
+      releaseNotes: 'https://github.com/evoelsewhere/evoflux/releases/tag/v2.0.1',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'macOS, Windows, Linux',
       author: { '@id': `${SITE_URL}/#organization` },
@@ -115,6 +115,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <script
+          dangerouslySetInnerHTML={{ __html: `(() => { try { const saved = localStorage.getItem('evoelsewhere-theme'); const theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.dataset.theme = theme; } catch {} })()` }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
