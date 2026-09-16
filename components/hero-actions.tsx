@@ -17,9 +17,16 @@ export function HeroActions() {
 
   useEffect(() => {
     const value = `${navigator.platform} ${navigator.userAgent}`.toLowerCase();
-    if (value.includes('mac')) setPlatform('mac');
-    else if (value.includes('win')) setPlatform('windows');
-    else if (value.includes('linux')) setPlatform('linux');
+    const detectedPlatform = value.includes('mac')
+      ? 'mac'
+      : value.includes('win')
+        ? 'windows'
+        : value.includes('linux')
+          ? 'linux'
+          : null;
+    const detectionTimer = window.setTimeout(() => setPlatform(detectedPlatform), 0);
+
+    return () => window.clearTimeout(detectionTimer);
   }, []);
 
   const details = platform ? platformDetails[platform] : null;

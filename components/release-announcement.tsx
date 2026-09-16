@@ -1,9 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FiArrowDown, FiCpu, FiExternalLink, FiFileText, FiGitBranch, FiUsers, FiX } from 'react-icons/fi';
 
-const RELEASE_VERSION = '2.0.1';
+const RELEASE_VERSION = '2.0.3';
 const STORAGE_KEY = `evoflux-release-${RELEASE_VERSION}-dismissed`;
 
 export function ReleaseAnnouncement() {
@@ -72,24 +73,24 @@ export function ReleaseAnnouncement() {
         <button ref={closeRef} className="release-modal-close" type="button" aria-label="Close release announcement" onClick={dismiss}><FiX /></button>
 
         <div className="release-modal-visual">
-          <div className="release-modal-stamp"><span>Maintenance release</span><strong>2.0.1</strong></div>
+          <div className="release-modal-stamp"><span>Maintenance release</span><strong>2.0.3</strong></div>
         </div>
 
         <div className="release-modal-content">
-          <p className="release-modal-kicker"><i /> Released · September 14, 2026</p>
-          <h2 id="release-modal-title">EvoFlux 2.0.1<br />is ready.</h2>
-          <p id="release-modal-description" className="release-modal-intro">A focused maintenance update for browser workflows, actionable Problems, and portable Evo Agent Specs.</p>
+          <p className="release-modal-kicker"><i /> Released · September 15, 2026</p>
+          <h2 id="release-modal-title">EvoFlux 2.0.3<br />is ready.</h2>
+          <p id="release-modal-description" className="release-modal-intro">A focused maintenance update for updater recovery, coding skill routing, and EASD workspace correctness.</p>
 
           <div className="release-modal-highlights" aria-label="Release highlights">
-            <article><FiFileText aria-hidden="true" /><div><strong>EASD portability</strong><p>Import support, session rebinding, code-context contracts, and more reliable verification recovery.</p></div></article>
-            <article><FiUsers aria-hidden="true" /><div><strong>Actionable Problems</strong><p>Accurate filters and severity, durable decisions, reversible dismissal, and draft-preserving agent handoff.</p></div></article>
-            <article><FiCpu aria-hidden="true" /><div><strong>Browser workflows</strong><p>Detached pages, drag-to-resize previews, device/layout controls, zoom, download history, and clearer errors.</p></div></article>
-            <article><FiGitBranch aria-hidden="true" /><div><strong>Workbench reliability</strong><p>Remembered window posture, scoped webview capability, safer dialogs, and fixes across Windows, macOS, and Linux.</p></div></article>
+            <article><FiFileText aria-hidden="true" /><div><strong>Updater recovery</strong><p>See update progress, understand failures, and keep the desktop window usable when an update cannot complete.</p></div></article>
+            <article><FiUsers aria-hidden="true" /><div><strong>Coding skill routing</strong><p>Thirteen overlapping coding skills are consolidated into four focused hubs with refreshed references and eval coverage.</p></div></article>
+            <article><FiCpu aria-hidden="true" /><div><strong>Consistent observation</strong><p>Shared routing hubs now own observation limits so coding workflows use predictable context budgets.</p></div></article>
+            <article><FiGitBranch aria-hidden="true" /><div><strong>EASD workspace correctness</strong><p>Runs keep the workspace selected for the run instead of inheriting one from a linked chat request.</p></div></article>
           </div>
 
           <div className="release-modal-actions">
-            <a className="release-modal-primary" href="/#download" onClick={dismiss}><span>Download 2.0.1</span><FiArrowDown aria-hidden="true" /></a>
-            <a className="release-modal-secondary" href="https://github.com/evoelsewhere/evoflux/releases/tag/v2.0.1" onClick={dismiss}><span>Release notes</span><FiExternalLink aria-hidden="true" /></a>
+            <Link className="release-modal-primary" href="/#download" onClick={dismiss}><span>Download 2.0.3</span><FiArrowDown aria-hidden="true" /></Link>
+            <a className="release-modal-secondary" href="https://github.com/evoelsewhere/evoflux/releases/tag/v2.0.3" onClick={dismiss}><span>Release notes</span><FiExternalLink aria-hidden="true" /></a>
           </div>
           <p className="release-modal-footnote">macOS · Windows · Linux · Apache-2.0</p>
         </div>

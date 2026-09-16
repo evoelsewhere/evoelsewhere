@@ -8,7 +8,11 @@ function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    setDark(document.documentElement.dataset.theme === 'dark');
+    const themeTimer = window.setTimeout(() => {
+      setDark(document.documentElement.dataset.theme === 'dark');
+    }, 0);
+
+    return () => window.clearTimeout(themeTimer);
   }, []);
 
   function toggleTheme() {
