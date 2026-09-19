@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FiArrowDown, FiArrowUpRight, FiCheck, FiChevronRight, FiGithub, FiLock, FiPlay } from 'react-icons/fi';
 
 import { MissionComposer } from '@/components/mission-composer';
@@ -167,7 +166,8 @@ export default function Home() {
           </div>
           <figure className="workspace-image">
             <div className="workspace-image-caption"><span>LIVE PREVIEW</span><span>coding / easd</span></div>
-            <Image src="/showcase/evoflux-light-coding-easd.png" alt="EvoFlux coding workspace with an agent conversation and specification panel" width={1634} height={1057} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/showcase/evoflux-light-coding-easd.png" alt="EvoFlux coding workspace with an agent conversation and specification panel" />
           </figure>
         </div>
       </section>

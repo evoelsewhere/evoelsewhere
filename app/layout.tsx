@@ -112,7 +112,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <script
           dangerouslySetInnerHTML={{ __html: `(() => { try { const saved = localStorage.getItem('evoelsewhere-theme'); const theme = saved === 'dark' || saved === 'light' ? saved : 'light'; document.documentElement.dataset.theme = theme; } catch {} })()` }}
