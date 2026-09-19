@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FiArrowDown, FiArrowUpRight, FiCheck, FiChevronRight, FiGithub, FiLock, FiPlay } from 'react-icons/fi';
+import { FiArrowDown, FiArrowUpRight, FiCheck, FiChevronRight, FiGithub, FiLock } from 'react-icons/fi';
 
 import { MissionComposer } from '@/components/mission-composer';
+import { MissionLab } from '@/components/mission-lab';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: { absolute: 'EvoFlux — A place for the work between idea and done' },
+  title: { absolute: 'EvoFlux — Make the work visible' },
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'EvoFlux — A place for the work between idea and done',
+    title: 'EvoFlux — Make the work visible',
     description: SITE_DESCRIPTION,
     url: '/',
     siteName: SITE_NAME,
@@ -21,32 +22,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EvoFlux — A place for the work between idea and done',
+    title: 'EvoFlux — Make the work visible',
     description: SITE_DESCRIPTION,
     images: ['/og.png'],
   },
 };
 
-const workflowFeatures = [
-  {
-    number: '01',
-    title: 'Say what needs to happen.',
-    copy: 'Start with the outcome, the context, and the constraints. EvoFlux turns a rough brief into a plan you can inspect before work begins.',
-    tone: 'rose',
-  },
-  {
-    number: '02',
-    title: 'Let the right agents move.',
-    copy: 'A lead agent routes research, writing, coding, browser work, and review to focused specialists — in parallel when it helps.',
-    tone: 'violet',
-  },
-  {
-    number: '03',
-    title: 'Keep the proof with the work.',
-    copy: 'Files, tests, screenshots, decisions, and failures stay attached to the mission so “done” has something solid behind it.',
-    tone: 'mint',
-  },
-];
+const signalItems = ['briefs', 'specialists', 'browser work', 'coding', 'memory', 'evidence', 'handoffs'];
 
 const workspacePoints = [
   ['Work mode', 'Research, documents, data, scheduling, and browser tasks.'],
@@ -61,42 +43,6 @@ const principles = [
   ['Evidence over vibes', 'A result is only ready when its acceptance criteria have the evidence to support it.'],
 ];
 
-function ProductPreview() {
-  return (
-    <div className="product-preview" aria-label="EvoFlux workspace preview">
-      <div className="preview-toolbar">
-        <span className="preview-brand"><span className="preview-brand-mark">e</span> evoflux</span>
-        <span className="preview-status"><i /> mission active</span>
-        <span className="preview-dots" aria-hidden="true"><b /><b /><b /></span>
-      </div>
-      <div className="preview-layout">
-        <aside className="preview-sidebar">
-          <span className="preview-side-label">WORKSPACE</span>
-          <strong>Product launch</strong>
-          <div className="preview-side-item active"><span>◈</span> Agent room</div>
-          <div className="preview-side-item"><span>◇</span> Evidence</div>
-          <div className="preview-side-item"><span>◌</span> Files</div>
-          <span className="preview-side-label preview-side-label-spaced">MISSIONS</span>
-          <div className="preview-mission"><i className="is-live" /> Research brief</div>
-          <div className="preview-mission"><i /> Landing page</div>
-        </aside>
-        <div className="preview-main">
-          <div className="preview-main-head">
-            <div><span className="preview-kicker">MISSION / 004</span><h3>The next frontier of intelligence</h3></div>
-            <span className="preview-model">EvoFlux / lead</span>
-          </div>
-          <div className="preview-progress"><span style={{ width: '72%' }} /></div>
-          <div className="preview-transcript">
-            <div className="preview-message preview-user"><span className="preview-avatar">you</span><p>Turn the research into a clear narrative for the team.</p></div>
-            <div className="preview-message"><span className="preview-avatar agent">e</span><div><p>I’m splitting this into three tracks so we can keep the thinking visible.</p><div className="preview-agent-cards"><span><FiCheck /> research</span><span><FiCheck /> synthesis</span><span className="in-progress"><FiPlay /> review</span></div></div></div>
-          </div>
-          <div className="preview-composer"><span>Ask for the next move…</span><span className="preview-send">↑</span></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <main className="evo-home">
@@ -109,9 +55,9 @@ export default function Home() {
         </div>
         <div className="evo-hero-content">
           <div className="evo-hero-copy">
-            <p className="evo-hero-kicker">For the work between idea and done.</p>
-            <h1>Give every hard thing <em>a way forward.</em></h1>
-            <p className="evo-hero-lede">EvoFlux is a calm, local-first workspace for turning ambitious briefs into finished work — with agents, tools, and evidence moving together.</p>
+            <p className="evo-hero-kicker">A local-first system for work that won’t stay small.</p>
+            <h1>Make the work <em>visible.</em><br />Then make it move.</h1>
+            <p className="evo-hero-lede">EvoFlux turns a messy brief into a living mission — with the right agents, tools, and proof appearing exactly when the work needs them.</p>
             <MissionComposer />
             <div className="evo-hero-links">
               <Link href="#workspace">Explore the workspace <FiArrowUpRight aria-hidden="true" /></Link>
@@ -124,9 +70,9 @@ export default function Home() {
               <video autoPlay loop muted playsInline preload="metadata" poster="/showcase/evoflux-light-work.png">
                 <source src="/evoflux-timelapse.mp4" type="video/mp4" />
               </video>
-              <div className="hero-video-caption"><span>Outline the next move.</span><span>evoflux / work mode</span></div>
+              <div className="hero-video-caption"><span>Brief → next move.</span><span>evoflux / work mode</span></div>
             </div>
-            <div className="hero-visual-note"><span>02:14</span> evidence attached</div>
+            <div className="hero-visual-note"><span>LIVE</span> evidence attached</div>
           </div>
         </div>
         <div className="evo-hero-foot">
@@ -135,30 +81,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="workflow-section" id="workspace">
+      <section className="mission-lab-section" id="workspace">
         <div className="shell">
-          <div className="evo-section-heading">
-            <div><p className="evo-section-tag">02 / The flow</p><h2>Whatever you entrust,<br /><em>gets a next move.</em></h2></div>
-            <p>Not another chat window. EvoFlux gives open-ended work a shape: a brief, a group of specialists, and a clear trail from first thought to final handoff.</p>
+          <div className="evo-section-heading mission-lab-heading">
+            <div><p className="evo-section-tag">02 / Mission control</p><h2>Don’t watch the work.<br /><em>See it think.</em></h2></div>
+            <p>Every mission has a visible state. Move through the system to see how EvoFlux turns intent into routes, routes into artifacts, and artifacts into evidence.</p>
           </div>
-          <div className="workflow-grid">
-            {workflowFeatures.map((feature) => (
-              <article className={`workflow-card ${feature.tone}`} key={feature.number}>
-                <span className="workflow-number">{feature.number}</span>
-                <div className="workflow-symbol" aria-hidden="true"><span /></div>
-                <h3>{feature.title}</h3>
-                <p>{feature.copy}</p>
-                <span className="workflow-arrow"><FiArrowUpRight aria-hidden="true" /></span>
-              </article>
-            ))}
-          </div>
+          <MissionLab />
+        </div>
+      </section>
+
+      <section className="signal-marquee" aria-label="EvoFlux capabilities">
+        <div className="signal-track">
+          {[0, 1].map((copy) => <div className="signal-group" aria-hidden={copy === 1} key={copy}>{signalItems.map((item) => <span key={`${copy}-${item}`}><i /> {item}</span>)}</div>)}
         </div>
       </section>
 
       <section className="workspace-section shell">
         <div className="evo-section-heading workspace-heading">
-          <div><p className="evo-section-tag">03 / One workspace</p><h2>Results you can<br /><em>stay with.</em></h2></div>
-          <p>Move from conversation to artifact without losing the thread. Run, inspect, edit, and review the work in the same place it was made.</p>
+          <div><p className="evo-section-tag">04 / One workspace</p><h2>Results you can<br /><em>stay with.</em></h2></div>
+          <p>Move from conversation to artifact without losing the thread. Run, inspect, edit, and review the work in the same place it was made — then leave with a handoff everyone can trust.</p>
         </div>
         <div className="workspace-panel">
           <div className="workspace-panel-copy">
@@ -181,9 +123,9 @@ export default function Home() {
       <section className="control-section">
         <div className="shell control-grid">
           <div className="control-copy">
-            <p className="evo-section-tag">04 / Your boundary</p>
+            <p className="evo-section-tag">05 / Your boundary</p>
             <h2>The machine<br /><em>is part of the product.</em></h2>
-            <p>Project files, memory, sessions, and observability live where your work lives. When a model or browser needs to step outside, the boundary is explicit.</p>
+            <p>Project files, memory, sessions, and observability live where your work lives. When a model or browser needs to step outside, the boundary is explicit — and yours to change.</p>
             <div className="control-principles">
               {principles.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{copy}</p></div></article>)}
             </div>
@@ -203,7 +145,7 @@ export default function Home() {
       <section className="download-section evo-download shell" id="download">
         <div className="download-card">
           <div className="download-card-copy">
-            <p className="evo-section-tag">05 / Start here</p>
+            <p className="evo-section-tag">06 / Start here</p>
             <h2>Make room for<br /><em>the next move.</em></h2>
             <p>Download the desktop workspace, connect a model provider, and bring a real brief with you.</p>
             <div className="download-card-actions">
