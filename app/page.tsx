@@ -1,21 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import { FiArrowDown, FiArrowUpRight, FiCheck, FiChevronRight, FiGithub, FiLock, FiPlay } from 'react-icons/fi';
 
-import { DownloadPanel } from '@/components/download-panel';
-import { HeroActions } from '@/components/hero-actions';
-import { ProductTour } from '@/components/product-tour';
-import { ProviderMarquee } from '@/components/provider-marquee';
+import { MissionComposer } from '@/components/mission-composer';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: { absolute: 'EvoFlux — Local-first AI agent workspace' },
+  title: { absolute: 'EvoFlux — A place for the work between idea and done' },
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'EvoFlux — Your agent team, on your machine',
+    title: 'EvoFlux — A place for the work between idea and done',
     description: SITE_DESCRIPTION,
     url: '/',
     siteName: SITE_NAME,
@@ -23,128 +22,202 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EvoFlux — Your agent team, on your machine',
+    title: 'EvoFlux — A place for the work between idea and done',
     description: SITE_DESCRIPTION,
     images: ['/og.png'],
   },
 };
 
-const coreFeatures = [
-  ['01', 'Delegate outcomes', 'A lead decomposes complex work and activates focused specialists only when they are useful.'],
-  ['02', 'Keep the job together', 'Conversation, files, terminal, browser, memory, Git, and previews share one execution context.'],
-  ['03', 'Choose every model', 'Mix providers, reasoning levels, skills, and tools independently for every agent role.'],
-  ['04', 'Verify before Done', 'Acceptance criteria stay linked to tests, reviews, artifacts, failures, and rework.'],
+const workflowFeatures = [
+  {
+    number: '01',
+    title: 'Say what needs to happen.',
+    copy: 'Start with the outcome, the context, and the constraints. EvoFlux turns a rough brief into a plan you can inspect before work begins.',
+    tone: 'rose',
+  },
+  {
+    number: '02',
+    title: 'Let the right agents move.',
+    copy: 'A lead agent routes research, writing, coding, browser work, and review to focused specialists — in parallel when it helps.',
+    tone: 'violet',
+  },
+  {
+    number: '03',
+    title: 'Keep the proof with the work.',
+    copy: 'Files, tests, screenshots, decisions, and failures stay attached to the mission so “done” has something solid behind it.',
+    tone: 'mint',
+  },
 ];
 
-const methodSteps = [
-  ['Outcome', 'Describe the result and constraints.'],
-  ['Specification', 'Approve criteria before execution.'],
-  ['Missions', 'Dispatch isolated specialist contracts.'],
-  ['Evidence', 'Attach proof to every criterion.'],
-  ['Convergence', 'Accept, reject, or rework with reason.'],
+const workspacePoints = [
+  ['Work mode', 'Research, documents, data, scheduling, and browser tasks.'],
+  ['Coding mode', 'Repository context, terminal, Git, language servers, and EASD.'],
+  ['Agent teams', 'One lead with specialists that have a clear role and boundary.'],
+  ['Any model', 'Hosted, routed, subscription, cloud, or local providers.'],
 ];
+
+const principles = [
+  ['Local by default', 'Your project files, sessions, memory, and telemetry stay on your machine unless you choose a connection.'],
+  ['Explicit boundaries', 'Filesystem, process, browser, and outbound access are visible controls — not invisible assumptions.'],
+  ['Evidence over vibes', 'A result is only ready when its acceptance criteria have the evidence to support it.'],
+];
+
+function ProductPreview() {
+  return (
+    <div className="product-preview" aria-label="EvoFlux workspace preview">
+      <div className="preview-toolbar">
+        <span className="preview-brand"><span className="preview-brand-mark">e</span> evoflux</span>
+        <span className="preview-status"><i /> mission active</span>
+        <span className="preview-dots" aria-hidden="true"><b /><b /><b /></span>
+      </div>
+      <div className="preview-layout">
+        <aside className="preview-sidebar">
+          <span className="preview-side-label">WORKSPACE</span>
+          <strong>Product launch</strong>
+          <div className="preview-side-item active"><span>◈</span> Agent room</div>
+          <div className="preview-side-item"><span>◇</span> Evidence</div>
+          <div className="preview-side-item"><span>◌</span> Files</div>
+          <span className="preview-side-label preview-side-label-spaced">MISSIONS</span>
+          <div className="preview-mission"><i className="is-live" /> Research brief</div>
+          <div className="preview-mission"><i /> Landing page</div>
+        </aside>
+        <div className="preview-main">
+          <div className="preview-main-head">
+            <div><span className="preview-kicker">MISSION / 004</span><h3>The next frontier of intelligence</h3></div>
+            <span className="preview-model">EvoFlux / lead</span>
+          </div>
+          <div className="preview-progress"><span style={{ width: '72%' }} /></div>
+          <div className="preview-transcript">
+            <div className="preview-message preview-user"><span className="preview-avatar">you</span><p>Turn the research into a clear narrative for the team.</p></div>
+            <div className="preview-message"><span className="preview-avatar agent">e</span><div><p>I’m splitting this into three tracks so we can keep the thinking visible.</p><div className="preview-agent-cards"><span><FiCheck /> research</span><span><FiCheck /> synthesis</span><span className="in-progress"><FiPlay /> review</span></div></div></div>
+          </div>
+          <div className="preview-composer"><span>Ask for the next move…</span><span className="preview-send">↑</span></div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="home-page">
+    <main className="evo-home">
       <SiteHeader />
 
-      <section className="hero hero-split shell">
-        <div className="hero-copy-column">
-          <div className="eyebrow"><i /> open-source · local-first · desktop</div>
-          <h1>Your agent team.<br /><em>On your machine.</em></h1>
-          <p className="hero-copy">Start with an outcome. Approve the specification. EvoFlux coordinates specialists to implement, test, review, and converge on evidence—while you stay in control.</p>
-          <HeroActions />
-          <p className="platforms">Work + Coding agents&nbsp;&nbsp; / &nbsp;&nbsp;Any model&nbsp;&nbsp; / &nbsp;&nbsp;Your machine</p>
+      <section className="evo-hero shell">
+        <div className="evo-hero-meta">
+          <span><i /> Local-first agent workspace</span>
+          <span>01 / INTRO</span>
         </div>
-        <div className="hero-visual-column">
-          <figure className="hero-system-visual">
-            <img src="/generated/dark/hero-agent-flow-seamless-transparent.png" alt="Excalidraw workflow from a request through a lead, plan, parallel specialists, evidence, and result" width="1568" height="1003" />
-          </figure>
+        <div className="evo-hero-content">
+          <div className="evo-hero-copy">
+            <p className="evo-hero-kicker">For the work between idea and done.</p>
+            <h1>Give every hard thing <em>a way forward.</em></h1>
+            <p className="evo-hero-lede">EvoFlux is a calm, local-first workspace for turning ambitious briefs into finished work — with agents, tools, and evidence moving together.</p>
+            <MissionComposer />
+            <div className="evo-hero-links">
+              <Link href="#workspace">Explore the workspace <FiArrowUpRight aria-hidden="true" /></Link>
+              <Link href="#download">Download for desktop <FiArrowDown aria-hidden="true" /></Link>
+            </div>
+          </div>
+          <div className="evo-hero-visual">
+            <ProductPreview />
+            <div className="hero-visual-note"><span>02:14</span> evidence attached</div>
+          </div>
         </div>
-      </section>
-
-      <section className="signal-bar shell" aria-label="Supported model providers">
-        <ProviderMarquee />
-      </section>
-
-      <section className="feature-intro shell">
-        <div className="section-heading compact-heading">
-          <div><p className="section-tag">01 / What the harness changes</p><h2>More than a chat.<br />A system for delivery.</h2></div>
-          <p>The model is replaceable. Context, action, policy, verification, and state are the product. EvoFlux keeps those layers visible instead of hiding them behind a single prompt box.</p>
-        </div>
-        <div className="core-feature-grid">
-          {coreFeatures.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
+        <div className="evo-hero-foot">
+          <span>One place for research, writing, code, and review.</span>
+          <span>macOS · Windows · Linux</span>
         </div>
       </section>
 
-      <section className="tour-section shell" id="features">
-        <div className="section-heading compact-heading">
-          <div><p className="section-tag">02 / Main features</p><h2>See the feature.<br />Then see it working.</h2></div>
-          <p>Select a capability to explore it. The tour keeps one real product capture in focus, so screenshots support the story instead of taking over the page.</p>
+      <section className="workflow-section" id="workspace">
+        <div className="shell">
+          <div className="evo-section-heading">
+            <div><p className="evo-section-tag">02 / The flow</p><h2>Whatever you entrust,<br /><em>gets a next move.</em></h2></div>
+            <p>Not another chat window. EvoFlux gives open-ended work a shape: a brief, a group of specialists, and a clear trail from first thought to final handoff.</p>
+          </div>
+          <div className="workflow-grid">
+            {workflowFeatures.map((feature) => (
+              <article className={`workflow-card ${feature.tone}`} key={feature.number}>
+                <span className="workflow-number">{feature.number}</span>
+                <div className="workflow-symbol" aria-hidden="true"><span /></div>
+                <h3>{feature.title}</h3>
+                <p>{feature.copy}</p>
+                <span className="workflow-arrow"><FiArrowUpRight aria-hidden="true" /></span>
+              </article>
+            ))}
+          </div>
         </div>
-        <ProductTour />
       </section>
 
-      <section className="local-first-section">
-        <div className="shell local-first-grid">
-          <div className="local-first-copy">
-            <p className="section-tag">03 / Local by architecture</p>
-            <h2>Your machine is not an afterthought.</h2>
-            <p>Project files, indexes, sessions, memory, permissions, and execution live locally. When a task needs a model, tool, or browser, the request crosses an explicit boundary you can inspect and control.</p>
+      <section className="workspace-section shell">
+        <div className="evo-section-heading workspace-heading">
+          <div><p className="evo-section-tag">03 / One workspace</p><h2>Results you can<br /><em>stay with.</em></h2></div>
+          <p>Move from conversation to artifact without losing the thread. Run, inspect, edit, and review the work in the same place it was made.</p>
+        </div>
+        <div className="workspace-panel">
+          <div className="workspace-panel-copy">
+            <span className="workspace-panel-index">EVOFLUX / 2.0</span>
+            <h3>The context stays connected.</h3>
+            <p>Every mission gets a durable home for its files, tools, decisions, and output. Open the result, ask for a change, or hand it off when it is ready.</p>
             <ul>
-              <li><strong>Scoped access</strong><span>Filesystem, process, shell, and denied-path controls.</span></li>
-              <li><strong>Outbound protection</strong><span>Mask or block sensitive data before it leaves the machine.</span></li>
-              <li><strong>Provider choice</strong><span>Use hosted, subscription, routed, cloud, or local models.</span></li>
+              {workspacePoints.map(([label, copy]) => <li key={label}><FiCheck aria-hidden="true" /><span><strong>{label}</strong>{copy}</span></li>)}
             </ul>
+            <Link className="text-link" href="/evo-agent-specification-driven-development">See how EASD keeps work honest <FiArrowUpRight aria-hidden="true" /></Link>
           </div>
-          <figure className="excalidraw-figure">
-            <img src="/generated/dark/local-first-excalidraw-site-bg-transparent.png" alt="Excalidraw diagram showing local files, memory, and runtime connected to models, tools, and browser through a permissions boundary" />
-            <figcaption>Architecture sketch · the control boundary stays explicit</figcaption>
+          <figure className="workspace-image">
+            <div className="workspace-image-caption"><span>LIVE PREVIEW</span><span>coding / easd</span></div>
+            <Image src="/showcase/evoflux-light-coding-easd.png" alt="EvoFlux coding workspace with an agent conversation and specification panel" width={1634} height={1057} />
           </figure>
         </div>
       </section>
 
-      <section className="method-preview shell" id="methodology">
-        <div className="section-heading compact-heading">
-          <div><p className="section-tag">04 / Evo Agent Specs</p><h2>Done is a verdict,<br />not a vibe.</h2></div>
-          <div className="heading-action"><p>EASD keeps every result connected to its original intent and the evidence that proves it.</p><Link href="/evo-agent-specification-driven-development">Read the methodology →</Link></div>
-        </div>
-        <div className="method-card">
-          <figure><img src="/generated/dark/easd-excalidraw-site-bg-transparent.png" alt="Excalidraw diagram of Outcome, Spec, parallel Missions, Evidence, Verified, and a rework loop" /></figure>
-          <ol>
-            {methodSteps.map(([title, copy], index) => <li key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}
-          </ol>
-        </div>
-      </section>
-
-      <section className="conductor-section shell">
-        <div className="conductor-band">
-          <div>
-            <p className="section-tag">05 / Scale with governance</p>
-            <h2>Personal execution.<br />Organizational control.</h2>
-            <p>EvoFlux is the workspace. Evo Conductor is the control plane for teams that need approved resources, role policies, realtime delivery, and effectiveness data.</p>
-            <Link className="text-link" href="/governance">See how governance works in EvoFlux →</Link>
+      <section className="control-section">
+        <div className="shell control-grid">
+          <div className="control-copy">
+            <p className="evo-section-tag">04 / Your boundary</p>
+            <h2>The machine<br /><em>is part of the product.</em></h2>
+            <p>Project files, memory, sessions, and observability live where your work lives. When a model or browser needs to step outside, the boundary is explicit.</p>
+            <div className="control-principles">
+              {principles.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{copy}</p></div></article>)}
+            </div>
           </div>
-          <div className="conductor-points">
-            <article><span>Catalog</span><strong>Agents, skills, MCP</strong><p>Publish versioned capabilities once and distribute them safely.</p></article>
-            <article><span>Policy</span><strong>Role, team, member</strong><p>Control which resources and secrets each person can use.</p></article>
-            <article><span>Evidence</span><strong>Usage and effectiveness</strong><p>Connect shared resources to requests, outcomes, and feedback.</p></article>
+          <div className="control-visual" aria-label="Diagram showing the local EvoFlux workspace and its explicit connection boundary">
+            <div className="control-orbit orbit-one" />
+            <div className="control-orbit orbit-two" />
+            <div className="control-core"><span className="control-core-mark">e</span><strong>Your machine</strong><small>files · memory · sessions</small></div>
+            <span className="control-node node-models">models</span>
+            <span className="control-node node-tools">tools</span>
+            <span className="control-node node-browser">browser</span>
+            <div className="control-boundary"><span>permission boundary</span></div>
           </div>
         </div>
       </section>
 
-      <section className="download-section shell" id="download">
-        <div className="section-heading compact-heading">
-          <div><p className="section-tag">06 / Download</p><h2>Install once.<br />Then update in place.</h2></div>
-          <p>The desktop package includes the native sidecar. Connect a provider, open Work or a repository, and configure the team behind your next outcome.</p>
+      <section className="download-section evo-download shell" id="download">
+        <div className="download-card">
+          <div className="download-card-copy">
+            <p className="evo-section-tag">05 / Start here</p>
+            <h2>Make room for<br /><em>the next move.</em></h2>
+            <p>Download the desktop workspace, connect a model provider, and bring a real brief with you.</p>
+            <div className="download-card-actions">
+              <a className="evo-button dark" href="#platforms"><FiArrowDown aria-hidden="true" /> Get EvoFlux</a>
+              <a className="evo-button light" href="https://github.com/evoelsewhere/evoflux"><FiGithub aria-hidden="true" /> View source <FiArrowUpRight aria-hidden="true" /></a>
+            </div>
+            <span className="download-card-meta"><FiLock aria-hidden="true" /> Open-source · local-first · Apache-2.0</span>
+          </div>
+          <div className="download-card-art" id="platforms">
+            <div className="art-window">
+              <div className="art-window-top"><span /><span /><span /><b>evoflux / ready</b></div>
+              <div className="art-window-body"><strong>Bring a real brief.</strong><span>Leave with something useful.</span><i>↗</i></div>
+            </div>
+          </div>
         </div>
-        <DownloadPanel />
       </section>
 
-      <section className="trust-strip shell">
-        <div><p className="section-tag">Privacy is a product boundary</p><h2>Know what stays local—and what you choose to connect.</h2></div>
-        <Link href="/privacy" className="button secondary">Read the Privacy Policy →</Link>
+      <section className="evo-closing shell">
+        <div><p className="evo-section-tag">evoelsewhere</p><h2>Build elsewhere.<br /><em>Own the outcome.</em></h2></div>
+        <Link className="closing-link" href="/privacy">Read our privacy principles <FiChevronRight aria-hidden="true" /></Link>
       </section>
 
       <SiteFooter />

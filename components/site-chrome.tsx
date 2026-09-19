@@ -49,12 +49,12 @@ export function SiteHeader() {
     <header className="site-header shell">
       <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
       <nav className={open ? 'header-nav open' : 'header-nav'} aria-label="Primary navigation">
-        <Link href="/#features" onClick={() => setOpen(false)}>Features</Link>
-        <Link href="/governance" onClick={() => setOpen(false)}>Governance</Link>
+        <Link href="/#workspace" onClick={() => setOpen(false)}>Workspace</Link>
+        <Link href="/governance" onClick={() => setOpen(false)}>Conductor</Link>
         <Link href="/evo-agent-specification-driven-development" onClick={() => setOpen(false)}>EASD</Link>
         <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
         <a href="https://github.com/evoelsewhere">GitHub</a>
-        <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Download ↘</Link>
+        <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Get EvoFlux ↗</Link>
         <ThemeToggle />
       </nav>
       <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>

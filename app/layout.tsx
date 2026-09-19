@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-import { ReleaseAnnouncement } from '@/components/release-announcement';
 import { absoluteUrl, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 
 import './globals.css';
@@ -116,13 +115,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <script
-          dangerouslySetInnerHTML={{ __html: `(() => { try { const saved = localStorage.getItem('evoelsewhere-theme'); const theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.dataset.theme = theme; } catch {} })()` }}
+          dangerouslySetInnerHTML={{ __html: `(() => { try { const saved = localStorage.getItem('evoelsewhere-theme'); const theme = saved === 'dark' || saved === 'light' ? saved : 'light'; document.documentElement.dataset.theme = theme; } catch {} })()` }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
-        <ReleaseAnnouncement />
         {children}
       </body>
     </html>
