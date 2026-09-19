@@ -119,7 +119,13 @@ export default function Home() {
             </div>
           </div>
           <div className="evo-hero-visual">
-            <ProductPreview />
+            <div className="hero-video-frame" aria-label="Timelapse of EvoFlux Work mode">
+              <div className="hero-video-topline"><span>LIVE CAPTURE / 06×</span><span>WORK MODE</span></div>
+              <video autoPlay loop muted playsInline preload="metadata" poster="/showcase/evoflux-light-work.png">
+                <source src="/evoflux-timelapse.mp4" type="video/mp4" />
+              </video>
+              <div className="hero-video-caption"><span>Outline the next move.</span><span>evoflux / work mode</span></div>
+            </div>
             <div className="hero-visual-note"><span>02:14</span> evidence attached</div>
           </div>
         </div>
