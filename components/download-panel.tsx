@@ -23,13 +23,13 @@ const latestReleaseApi = 'https://api.github.com/repos/evoelsewhere/evoflux/rele
 const trustedDownloadPrefix = 'https://github.com/evoelsewhere/evoflux/releases/download/';
 
 const fallbackRelease: GithubRelease = {
-  tag_name: 'v2.0.3',
-  html_url: `${releasesUrl}/tag/v2.0.3`,
+  tag_name: 'v3.0.2',
+  html_url: `${releasesUrl}/tag/v3.0.2`,
   assets: [
-    { name: 'EvoFlux_2.0.3_aarch64.dmg', browser_download_url: `${releasesUrl}/download/v2.0.3/EvoFlux_2.0.3_aarch64.dmg`, size: 0 },
-    { name: 'EvoFlux_2.0.3_x64.dmg', browser_download_url: `${releasesUrl}/download/v2.0.3/EvoFlux_2.0.3_x64.dmg`, size: 0 },
-    { name: 'EvoFlux_2.0.3_x64-setup.exe', browser_download_url: `${releasesUrl}/download/v2.0.3/EvoFlux_2.0.3_x64-setup.exe`, size: 0 },
-    { name: 'EvoFlux_2.0.3_amd64.deb', browser_download_url: `${releasesUrl}/download/v2.0.3/EvoFlux_2.0.3_amd64.deb`, size: 0 },
+    { name: 'EvoFlux_3.0.2_aarch64.dmg', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_aarch64.dmg`, size: 0 },
+    { name: 'EvoFlux_3.0.2_x64.dmg', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_x64.dmg`, size: 0 },
+    { name: 'EvoFlux_3.0.2_x64-setup.exe', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_x64-setup.exe`, size: 0 },
+    { name: 'EvoFlux_3.0.2_amd64.deb', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_amd64.deb`, size: 0 },
   ],
 };
 

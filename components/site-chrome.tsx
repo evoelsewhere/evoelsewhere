@@ -49,7 +49,9 @@ export function SiteHeader() {
     <header className="site-header shell">
       <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
       <nav className={open ? 'header-nav open' : 'header-nav'} aria-label="Primary navigation">
-        <Link href="/#workspace" onClick={() => setOpen(false)}>Workspace</Link>
+        <Link href="/#surfaces" onClick={() => setOpen(false)}>Product</Link>
+        <Link href="/#computer-app-control" onClick={() => setOpen(false)}>App control</Link>
+        <Link href="/#webbridge-story" onClick={() => setOpen(false)}>WebBridge</Link>
         <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
         <a href="https://github.com/evoelsewhere">GitHub</a>
         <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Get EvoFlux ↗</Link>

@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'EvoFlux — evoelsewhere',
     short_name: 'EvoFlux',
-    description: 'A local-first desktop workspace for AI agent teams.',
+    description: 'A local-first desktop workspace for AI agent teams, Computer App Control, and WebBridge browser workflows.',
     start_url: '/',
     display: 'standalone',
     background_color: '#f8f7f3',

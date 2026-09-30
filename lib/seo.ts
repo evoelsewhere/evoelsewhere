@@ -2,7 +2,7 @@ export const SITE_URL = 'https://evoelsewhere.asia';
 
 export const SITE_NAME = 'evoelsewhere';
 
-export const SITE_DESCRIPTION = 'EvoFlux is an open-source, local-first desktop workspace for AI agent teams. Coordinate specialized agents, control tools and models, and verify delivery with evidence.';
+export const SITE_DESCRIPTION = 'EvoFlux is an open-source, local-first desktop workspace for AI agent teams, Computer App Control, and WebBridge browser workflows.';
 
 export const OG_IMAGE = {
   url: '/og.png',

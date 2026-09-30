@@ -1,173 +1,54 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FiArrowDown, FiArrowUpRight, FiCheck, FiChevronRight, FiGithub, FiLock } from 'react-icons/fi';
+import { FiArrowDown, FiArrowUpRight, FiCheck, FiCommand, FiEye, FiGlobe, FiLayers, FiLock, FiMonitor, FiMousePointer, FiShield, FiZap } from 'react-icons/fi';
 
-import { MissionComposer } from '@/components/mission-composer';
+import { DownloadPanel } from '@/components/download-panel';
 import { MissionLab } from '@/components/mission-lab';
+import { MissionComposer } from '@/components/mission-composer';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: { absolute: 'EvoFlux — Make the work visible' },
+  title: { absolute: 'EvoFlux — The local-first agent workspace' },
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    title: 'EvoFlux — Make the work visible',
-    description: SITE_DESCRIPTION,
-    url: '/',
-    siteName: SITE_NAME,
-    images: [OG_IMAGE],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'EvoFlux — Make the work visible',
-    description: SITE_DESCRIPTION,
-    images: ['/og.png'],
-  },
+  openGraph: { type: 'website', locale: 'en_US', title: 'EvoFlux — The local-first agent workspace', description: SITE_DESCRIPTION, url: '/', siteName: SITE_NAME, images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', title: 'EvoFlux — The local-first agent workspace', description: SITE_DESCRIPTION, images: ['/og.png'] },
 };
 
-const signalItems = ['briefs', 'specialists', 'browser work', 'coding', 'memory', 'evidence', 'handoffs'];
-
-const workspacePoints = [
-  ['Work mode', 'Research, documents, data, scheduling, and browser tasks.'],
-  ['Coding mode', 'Repository context, terminal, Git, language servers, and project tools.'],
-  ['Agent teams', 'One lead with specialists that have a clear role and boundary.'],
-  ['Any model', 'Hosted, routed, subscription, cloud, or local providers.'],
+const surfaces = [
+  { id: 'desktop', number: '01', eyebrow: 'Desktop workspace', title: 'A home for the whole mission.', copy: 'Keep conversations, files, terminal, memory, models, and artifacts in one local workspace. Context stays close to the work.', icon: FiLayers, tags: ['Work + Coding', 'Local state', 'Any model'] },
+  { id: 'computer-app-control', number: '02', eyebrow: 'Computer App Control', title: 'Let an agent operate the app.', copy: 'Control one desktop window through its accessibility tree. Watch a live preview, approve each action, and take control whenever you want.', icon: FiMousePointer, tags: ['Window-scoped', 'Accessibility tree', 'User approval'] },
+  { id: 'webbridge', number: '03', eyebrow: 'WebBridge', title: 'Your browser, still yours.', copy: 'Pair your real Chrome or Edge session. Bring page context into the workspace through an explicit, reversible handoff.', icon: FiGlobe, tags: ['Real browser', 'Context relay', 'Release control'] },
 ];
 
-const principles = [
-  ['Local by default', 'Your project files, sessions, memory, and telemetry stay on your machine unless you choose a connection.'],
-  ['Explicit boundaries', 'Filesystem, process, browser, and outbound access are visible controls — not invisible assumptions.'],
-  ['Evidence over vibes', 'A result is only ready when its acceptance criteria have the evidence to support it.'],
+const boundaryPoints = [
+  ['Observe', 'See the window, page, file, or process before the next action.'],
+  ['Approve', 'Keep meaningful actions visible and interruptible.'],
+  ['Recover', 'Inspect history, re-run safely, or take control back.'],
 ];
+
+function SurfaceMock({ id }: { id: string }) {
+  if (id === 'desktop') return <div className="surface-mock desktop-mock"><div className="mock-sidebar"><b>Work</b><span>⌘ P&nbsp; Search</span><span>＋ New Chat</span><span>◌ Scheduler</span><span>◇ Plugins</span></div><div className="mock-main"><div className="mock-toolbar">evoflux <span>Overview</span><span>Models</span><span>30d</span></div><div className="mock-stat-row"><i /><i /><i /><i /></div><div className="mock-message">What would you like to accomplish?<small>Describe the outcome · Add useful context</small></div><div className="mock-input">Message the team… <span>Model · Default&nbsp; ↑</span></div></div></div>;
+  if (id === 'computer-app-control') return <div className="surface-mock control-mock"><div className="control-window-bar"><span /><span /><span /><b>Computer App Control</b><small>LIVE PREVIEW</small></div><div className="control-window-body"><div className="access-tree"><span>ACCESSIBILITY TREE</span><b>Chrome window</b><p>↳ Address bar</p><p>↳ Research Overview</p><p>↳ Side Chat</p><p>↳ Release control</p></div><div className="control-preview"><div className="preview-page"><strong>Research Overview</strong><span>3 key points found</span><i /><i /><i /></div><div className="approval-pill"><FiCheck /> Action approved</div></div></div></div>;
+  return <div className="surface-mock bridge-mock"><div className="browser-top"><span>●</span><b>Research Overview</b><span>＋</span></div><div className="bridge-page"><h4>Research Overview</h4><p>A summary of recent findings and data insights.</p><div className="bridge-chart" /></div><aside><strong><FiGlobe /> EvoFlux WebBridge</strong><small>Connected to EvoFlux Desktop</small><div className="bridge-chat">Summarize the current page</div><div className="bridge-points">3 key points found<br /><span>• Context stays in the browser<br />• Submit only when you choose</span></div><footer><i /> Browser control active <button>Release</button></footer></aside></div>;
+}
 
 export default function Home() {
-  return (
-    <main className="evo-home">
-      <SiteHeader />
-
-      <section className="evo-hero shell">
-        <div className="evo-hero-meta">
-          <span><i /> Local-first agent workspace</span>
-          <span>01 / INTRO</span>
-        </div>
-        <div className="evo-hero-content">
-          <div className="evo-hero-copy">
-            <p className="evo-hero-kicker">A local-first system for work that won’t stay small.</p>
-            <h1>Make the work <em>visible.</em><br />Then make it move.</h1>
-            <p className="evo-hero-lede">EvoFlux turns a messy brief into a living mission — with the right agents, tools, and proof appearing exactly when the work needs them.</p>
-            <MissionComposer />
-            <div className="evo-hero-links">
-              <Link href="#workspace">Explore the workspace <FiArrowUpRight aria-hidden="true" /></Link>
-              <Link href="#download">Download for desktop <FiArrowDown aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div className="evo-hero-visual">
-            <div className="hero-video-frame" aria-label="Timelapse of EvoFlux Work mode">
-              <div className="hero-video-topline"><span>LIVE CAPTURE / 06×</span><span>WORK MODE</span></div>
-              <video autoPlay loop muted playsInline preload="metadata" poster="/showcase/evoflux-light-work.png">
-                <source src="/evoflux-timelapse.mp4" type="video/mp4" />
-              </video>
-              <div className="hero-video-caption"><span>Brief → next move.</span><span>evoflux / work mode</span></div>
-            </div>
-            <div className="hero-visual-note"><span>LIVE</span> evidence attached</div>
-          </div>
-        </div>
-        <div className="evo-hero-foot">
-          <span>One place for research, writing, code, and review.</span>
-          <span>macOS · Windows · Linux</span>
-        </div>
-      </section>
-
-      <section className="mission-lab-section" id="workspace">
-        <div className="shell">
-          <div className="evo-section-heading mission-lab-heading">
-            <div><p className="evo-section-tag">02 / Mission control</p><h2>Don’t watch the work.<br /><em>See it think.</em></h2></div>
-            <p>Every mission has a visible state. Move through the system to see how EvoFlux turns intent into routes, routes into artifacts, and artifacts into evidence.</p>
-          </div>
-          <MissionLab />
-        </div>
-      </section>
-
-      <section className="signal-marquee" aria-label="EvoFlux capabilities">
-        <div className="signal-track">
-          {[0, 1].map((copy) => <div className="signal-group" aria-hidden={copy === 1} key={copy}>{signalItems.map((item) => <span key={`${copy}-${item}`}><i /> {item}</span>)}</div>)}
-        </div>
-      </section>
-
-      <section className="workspace-section shell">
-        <div className="evo-section-heading workspace-heading">
-          <div><p className="evo-section-tag">04 / One workspace</p><h2>Results you can<br /><em>stay with.</em></h2></div>
-          <p>Move from conversation to artifact without losing the thread. Run, inspect, edit, and review the work in the same place it was made — then leave with a handoff everyone can trust.</p>
-        </div>
-        <div className="workspace-panel">
-          <div className="workspace-panel-copy">
-            <span className="workspace-panel-index">EVOFLUX / 2.0</span>
-            <h3>The context stays connected.</h3>
-            <p>Every mission gets a durable home for its files, tools, decisions, and output. Open the result, ask for a change, or hand it off when it is ready.</p>
-            <ul>
-              {workspacePoints.map(([label, copy]) => <li key={label}><FiCheck aria-hidden="true" /><span><strong>{label}</strong>{copy}</span></li>)}
-            </ul>
-          </div>
-          <figure className="workspace-image">
-            <div className="workspace-image-caption"><span>LIVE PREVIEW</span><span>coding / workspace</span></div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/showcase/coding-workspace.png" alt="EvoFlux coding workspace with an agent conversation and repository context" />
-          </figure>
-        </div>
-      </section>
-
-      <section className="control-section">
-        <div className="shell control-grid">
-          <div className="control-copy">
-            <p className="evo-section-tag">05 / Your boundary</p>
-            <h2>The machine<br /><em>is part of the product.</em></h2>
-            <p>Project files, memory, sessions, and observability live where your work lives. When a model or browser needs to step outside, the boundary is explicit — and yours to change.</p>
-            <div className="control-principles">
-              {principles.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{copy}</p></div></article>)}
-            </div>
-          </div>
-          <div className="control-visual" aria-label="Diagram showing the local EvoFlux workspace and its explicit connection boundary">
-            <div className="control-orbit orbit-one" />
-            <div className="control-orbit orbit-two" />
-            <div className="control-core"><span className="control-core-mark">e</span><strong>Your machine</strong><small>files · memory · sessions</small></div>
-            <span className="control-node node-models">models</span>
-            <span className="control-node node-tools">tools</span>
-            <span className="control-node node-browser">browser</span>
-            <div className="control-boundary"><span>permission boundary</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="download-section evo-download shell" id="download">
-        <div className="download-card">
-          <div className="download-card-copy">
-            <p className="evo-section-tag">06 / Start here</p>
-            <h2>Make room for<br /><em>the next move.</em></h2>
-            <p>Download the desktop workspace, connect a model provider, and bring a real brief with you.</p>
-            <div className="download-card-actions">
-              <a className="evo-button dark" href="#platforms"><FiArrowDown aria-hidden="true" /> Get EvoFlux</a>
-              <a className="evo-button light" href="https://github.com/evoelsewhere/evoflux"><FiGithub aria-hidden="true" /> View source <FiArrowUpRight aria-hidden="true" /></a>
-            </div>
-            <span className="download-card-meta"><FiLock aria-hidden="true" /> Open-source · local-first · Apache-2.0</span>
-          </div>
-          <div className="download-card-art" id="platforms">
-            <div className="art-window">
-              <div className="art-window-top"><span /><span /><span /><b>evoflux / ready</b></div>
-              <div className="art-window-body"><strong>Bring a real brief.</strong><span>Leave with something useful.</span><i>↗</i></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="evo-closing shell">
-        <div><p className="evo-section-tag">evoelsewhere</p><h2>Build elsewhere.<br /><em>Own the outcome.</em></h2></div>
-        <Link className="closing-link" href="/privacy">Read our privacy principles <FiChevronRight aria-hidden="true" /></Link>
-      </section>
-
-      <SiteFooter />
-    </main>
-  );
+  return <main className="landing-page">
+    <SiteHeader />
+    <section className="landing-hero shell">
+      <div className="landing-hero-copy"><div className="landing-kicker"><span className="status-pip" /> EvoFlux / local-first desktop</div><p className="landing-index">01 / THE WORKSPACE</p><h1>Agents that can<br /><em>see the work.</em></h1><p className="landing-lede">A local-first workspace for research, coding, computer control, and browser work — with every boundary visible and yours to approve.</p><div className="landing-actions"><a className="landing-button landing-button-primary" href="#download"><FiArrowDown /> Download EvoFlux</a><a className="landing-button landing-button-quiet" href="#surfaces">Explore the surfaces <FiArrowUpRight /></a></div><div className="landing-proof"><span><FiLock /> Local runtime</span><span><FiShield /> Inspectable permissions</span><span><FiZap /> Any model</span></div></div>
+      <div className="landing-hero-media"><div className="intro-video-frame"><div className="intro-video-bar"><span>EVOLFLUX / INTRO</span><span>DESKTOP + CONTROL + BRIDGE</span></div><video autoPlay loop muted playsInline preload="metadata" poster="/evoflux-clean-ui.jpg" aria-label="EvoFlux desktop workspace introduction"><source src="/evoflux-intro.mp4" type="video/mp4" /></video><div className="intro-video-foot"><span>Live product capture</span><span>Watch the workspace move →</span></div></div><span className="media-note media-note-top">RUNS ON YOUR MACHINE</span><span className="media-note media-note-bottom">WORK · CODE · CONTROL · BRIDGE</span></div>
+    </section>
+    <section className="landing-signal-rail" aria-label="EvoFlux product capabilities"><div className="shell landing-signal-inner"><span>One workspace</span><i /> <span>Two control surfaces</span><i /> <span>One explicit boundary</span><i /> <span>macOS · Windows · Linux</span></div></section>
+    <section className="surface-section shell" id="surfaces"><div className="landing-section-head"><div><p className="landing-label">02 / PRODUCT SURFACES</p><h2>Three ways to<br /><em>move work.</em></h2></div><p>Use the same local harness whether the next step is a file, a desktop window, or a live browser tab.</p></div><div className="surface-grid">{surfaces.map((surface) => { const Icon = surface.icon; return <article className={`surface-card surface-card-${surface.id}`} key={surface.id} id={surface.id}><div className="surface-card-copy"><div className="surface-card-top"><span>{surface.number}</span><Icon /></div><p className="surface-eyebrow">{surface.eyebrow}</p><h3>{surface.title}</h3><p>{surface.copy}</p><div className="surface-tags">{surface.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div><SurfaceMock id={surface.id} /></article>; })}</div></section>
+    <section className="control-story" id="computer-control-story"><div className="shell control-story-grid"><div className="control-story-copy"><p className="landing-label">03 / COMPUTER APP CONTROL</p><h2>Not a macro.<br /><em>A supervised operator.</em></h2><p>Computer App Control gives an agent a bounded view of one desktop window. It reads the accessibility tree, proposes the next action, and keeps you in the loop.</p><div className="control-story-list">{boundaryPoints.map(([label, copy], index) => <div key={label}><span>0{index + 1}</span><div><strong>{label}</strong><p>{copy}</p></div></div>)}</div><a className="inline-link" href="#download">Get the desktop app <FiArrowUpRight /></a></div><div className="control-story-visual"><div className="control-diagram"><div className="diagram-window"><span>APP WINDOW</span><strong>Observe · act · verify</strong><small>One bounded desktop surface</small></div><div className="diagram-access"><FiMousePointer /><span>ACCESSIBILITY<br />TREE</span></div><div className="diagram-approval"><FiCheck /> USER APPROVAL</div><i className="diagram-line line-one" /><i className="diagram-line line-two" /></div></div></div></section>
+    <section className="bridge-story shell" id="webbridge-story"><div className="landing-section-head"><div><p className="landing-label">04 / WEBBRIDGE</p><h2>Bring the real web<br /><em>into the room.</em></h2></div><p>Keep your sign-ins and browser session where they are. WebBridge turns the current tab into an explicit, reversible context handoff.</p></div><div className="bridge-grid"><div className="bridge-architecture"><div className="bridge-flow"><span>REAL BROWSER</span><i>→</i><strong>SECURE<br />BRIDGE</strong><i>→</i><span>EVOLFLUX<br />DESKTOP</span></div><div className="bridge-rules"><span><FiLock /> Pairing</span><span><FiEye /> Context</span><span><FiShield /> Redaction</span><span><FiCommand /> Release</span></div></div><div className="bridge-copy"><div className="bridge-callout"><FiEye /><strong>Context before action</strong><p>Page context, screenshots, selections, and files are only sent when you choose the action.</p></div><div className="bridge-callout"><FiCommand /><strong>Take control anytime</strong><p>Pause commands, release the browser, cancel watches, and keep an inspectable handoff history.</p></div><div className="bridge-callout"><FiShield /><strong>Policy-checked relay</strong><p>The bridge is bounded by pairing, session state, permissions, and redaction rules.</p></div><a className="inline-link" href="https://github.com/evoelsewhere/evo-webbridge">Explore WebBridge source <FiArrowUpRight /></a></div></div></section>
+    <section className="mission-section shell" id="workspace"><div className="landing-section-head"><div><p className="landing-label">05 / MISSION LOOP</p><h2>From brief to<br /><em>next move.</em></h2></div><p>See the agent loop as it happens: brief, route, build, verify. Each stage leaves a state you can inspect instead of a spinner you have to trust.</p></div><MissionLab /></section>
+    <section className="boundary-story"><div className="shell boundary-grid"><div><p className="landing-label">06 / LOCAL BOUNDARY</p><h2>Your machine<br /><em>is part of the product.</em></h2><p>Files, memory, sessions, tools, and permissions stay close. EvoFlux connects outward only when a provider, browser, or app action requires it.</p><div className="boundary-points"><div><FiMonitor /><span>Desktop-native</span></div><div><FiLock /><span>Permission-scoped</span></div><div><FiEye /><span>Always inspectable</span></div></div></div><div className="boundary-visual"><div className="boundary-orbit boundary-orbit-a" /><div className="boundary-orbit boundary-orbit-b" /><div className="boundary-core"><span>e</span><strong>Your machine</strong><small>files · memory · sessions</small></div><span className="boundary-node node-models">models</span><span className="boundary-node node-tools">tools</span><span className="boundary-node node-browser">browser</span><span className="boundary-node node-app">desktop app</span></div></div></section>
+    <section className="landing-download shell" id="download"><div className="download-intro"><div><p className="landing-label">07 / DOWNLOAD</p><h2>Start with the<br /><em>real workspace.</em></h2><p>Install EvoFlux, connect a provider, and bring a real task. WebBridge is optional; Computer App Control is built into the desktop runtime.</p></div><div className="download-badges"><span><FiMonitor /> Desktop runtime</span><span><FiGlobe /> WebBridge optional</span><span><FiShield /> Apache-2.0</span></div></div><DownloadPanel /></section>
+    <section className="landing-close shell"><p className="landing-label">EVOELSEWHERE</p><h2>Make the work visible.<br /><em>Keep control.</em></h2><Link className="inline-link" href="/privacy">Read privacy boundaries <FiArrowUpRight /></Link></section>
+    <SiteFooter />
+  </main>;
 }
