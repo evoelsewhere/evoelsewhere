@@ -1616,6 +1616,9 @@ h3, h4 { font-family: var(--font-geist-sans); font-weight: 500 !important; }
 .mimo-overline { margin: 0; color: #8b918b; font: 600 9px/1.3 var(--font-geist-mono), monospace; letter-spacing: .13em; text-transform: uppercase; }
 .mimo-overline > span { display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #78bc8b; box-shadow: 0 0 0 4px rgb(120 188 139 / .13); }
 .mimo-hero h1 { margin: 23px 0 17px; font-family: var(--font-heading); font-size: clamp(58px, 7.2vw, 104px); font-weight: 550; line-height: .95; letter-spacing: -.09em; }
+.mimo-hero-rotator { display: inline-flex; min-width: 9.1em; justify-content: center; overflow: hidden; white-space: nowrap; vertical-align: baseline; }
+.mimo-hero-rotator > span { display: inline-block; animation: hero-phrase-lift 620ms cubic-bezier(.18,.8,.22,1) both; }
+@keyframes hero-phrase-lift { from { opacity: 0; filter: blur(8px); transform: translateY(.32em); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
 .mimo-hero h1 em, .mimo-statement h2 em, .mimo-feature h2 em, .mimo-product-section h2 em, .mimo-boundary h2 em, .mimo-download h2 em, .mimo-footer-cta h2 em { color: transparent; font-style: normal; background: linear-gradient(105deg, #ee8d7e, #9b8ee2 52%, #5b91c6); background-clip: text; -webkit-background-clip: text; }
 .mimo-hero-copy { max-width: 610px; margin: 0 auto; color: var(--mimo-muted); font-size: 16px; line-height: 1.62; }
 .mimo-hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
