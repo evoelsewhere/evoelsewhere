@@ -1626,10 +1626,10 @@ h3, h4 { font-family: var(--font-geist-sans); font-weight: 500 !important; }
 .mimo-black-button svg, .mimo-outline-button svg { width: 13px; height: 13px; }
 .mimo-platforms { display: flex; justify-content: center; gap: 14px; margin-top: 18px; color: #8a918a; font: 500 9px/1 var(--font-geist-mono), monospace; }
 .mimo-platforms i { width: 1px; height: 11px; background: #d4d9d2; }
-.mimo-hero-preview { margin: 43px auto 0; max-width: 1050px; overflow: hidden; border: 1px solid #dfe3dd; border-radius: 21px 21px 0 0; background: #fff; box-shadow: 0 24px 60px rgb(26 32 27 / .11); text-align: left; }
+.mimo-hero-preview { margin: 43px auto 0; max-width: 1050px; overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; text-align: left; }
 .mimo-preview-label, .mimo-preview-caption { display: flex; justify-content: space-between; gap: 15px; padding: 10px 15px; color: #848d85; font: 500 8px/1 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; }
-.mimo-preview-label { border-bottom: 1px solid #e4e8e3; }
-.mimo-preview-caption { border-top: 1px solid #e4e8e3; color: #89948b; }
+.mimo-preview-label { border: 0; }
+.mimo-preview-caption { border: 0; color: #89948b; }
 .mimo-preview-caption span:first-child { color: #5e986c; }
 .mimo-hero-preview video { display: block; width: 100%; aspect-ratio: 16 / 8.15; object-fit: cover; background: #121613; }
 .mimo-statement { padding: 145px 0 122px; text-align: center; }
@@ -1695,7 +1695,7 @@ html[data-motion-ready='true'] [data-reveal][data-reveal-visible='true'] { anima
 html[data-motion-ready='true'] .mimo-hero[data-reveal][data-reveal-visible='true'] { animation-duration: 980ms; }
 @keyframes mimo-reveal-in { from { opacity: .84; filter: blur(2px); transform: translate3d(0, 18px, 0); } to { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0); } }
 .mimo-hero-preview { transform-origin: center top; transition: transform 650ms cubic-bezier(.2,.75,.2,1), box-shadow 650ms cubic-bezier(.2,.75,.2,1); }
-.mimo-hero-preview:hover { transform: translateY(-3px) scale(1.004); box-shadow: 0 30px 74px rgb(26 32 27 / .14); }
+.mimo-hero-preview:hover { transform: translateY(-3px) scale(1.004); }
 .mimo-black-button, .mimo-outline-button, .mimo-text-link { transition: transform 220ms cubic-bezier(.2,.75,.2,1), color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
 .mimo-text-link:hover { transform: translateX(4px); }
 .mimo-text-link svg { transition: transform 220ms ease; }
