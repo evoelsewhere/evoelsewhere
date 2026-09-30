@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { SITE_NAME } from '@/lib/seo';
 
-const description = 'Privacy practices and data boundaries for EvoFlux Desktop, Evo Conductor, the EvoFlux WebBridge extension, and evoelsewhere.asia.';
+const description = 'Privacy practices and data boundaries for EvoFlux Desktop, the EvoFlux WebBridge extension, and evoelsewhere.asia.';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -25,7 +25,6 @@ const toc = [
   ['scope', 'Scope'],
   ['website', 'Website'],
   ['evoflux', 'EvoFlux Desktop'],
-  ['conductor', 'Evo Conductor'],
   ['webbridge', 'WebBridge Extension'],
   ['shared', 'Shared practices'],
   ['security', 'Security & retention'],
@@ -43,15 +42,14 @@ export default function PrivacyPage() {
 
       <header className="privacy-hero shell">
         <p className="section-tag">Legal / Privacy</p>
-        <h1>Three products.<br />Three data boundaries.</h1>
-        <p>This policy separates how EvoFlux Desktop, Evo Conductor, and the EvoFlux WebBridge extension handle information. Shared website and legal practices are covered after the product-specific sections.</p>
+        <h1>Two products.<br />Two data boundaries.</h1>
+        <p>This policy separates how EvoFlux Desktop and the EvoFlux WebBridge extension handle information. Shared website and legal practices are covered after the product-specific sections.</p>
         <div className="privacy-meta"><span>Effective: August 26, 2026</span><span>Version 1.1</span><span>No advertising · No sale of personal data</span></div>
       </header>
 
       <nav className="privacy-product-grid shell" aria-label="Product privacy areas">
         <a href="#evoflux" className="privacy-product-card privacy-product-flux"><span>01 · Desktop</span><strong>EvoFlux</strong><p>Local workspace, agents, models, tools, memory, and artifacts.</p><b>Local by default →</b></a>
-        <a href="#conductor" className="privacy-product-card privacy-product-conductor"><span>02 · Control plane</span><strong>Evo Conductor</strong><p>Members, policies, shared resources, secrets, and fleet telemetry.</p><b>Operator controlled →</b></a>
-        <a href="#webbridge" className="privacy-product-card privacy-product-bridge"><span>03 · Browser extension</span><strong>WebBridge</strong><p>Authorized tabs, page context, screenshots, Side Chat, and browser actions.</p><b>User supervised →</b></a>
+        <a href="#webbridge" className="privacy-product-card privacy-product-bridge"><span>02 · Browser extension</span><strong>WebBridge</strong><p>Authorized tabs, page context, screenshots, Side Chat, and browser actions.</p><b>User supervised →</b></a>
       </nav>
 
       <div className="privacy-layout shell">
@@ -63,14 +61,13 @@ export default function PrivacyPage() {
         <article className="privacy-policy">
           <div className="privacy-summary">
             <strong>The short version</strong>
-            <p>EvoFlux keeps work on your device by default. Evo Conductor is governed by the organization operating it. WebBridge acts only for browser tabs connected to an authorized EvoFlux session. Data leaves these boundaries only when a feature, provider, tool, or operator configuration requires it.</p>
+            <p>EvoFlux keeps work on your device by default. WebBridge acts only for browser tabs connected to an authorized EvoFlux session. Data leaves these boundaries only when a feature, provider, tool, or user configuration requires it.</p>
           </div>
 
           <section className="policy-section" id="scope">
             <h2>1. Scope</h2>
-            <p>This policy applies to <strong>evoelsewhere.asia</strong>, EvoFlux Desktop, Evo Conductor, and the EvoFlux WebBridge browser extension.</p>
+            <p>This policy applies to <strong>evoelsewhere.asia</strong>, EvoFlux Desktop, and the EvoFlux WebBridge browser extension.</p>
             <p>Open-source code, issues, discussions, releases, and downloads hosted by GitHub are subject to GitHub&apos;s privacy terms. Model providers, MCP servers, plugins, cloud platforms, and other connected services apply their own practices.</p>
-            <p className="policy-note">For an organization-operated Evo Conductor deployment, that organization determines the purpose and means of processing. Its privacy notice may apply in addition to this policy.</p>
           </section>
 
           <section className="policy-section" id="website">
@@ -91,20 +88,8 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section className="policy-section privacy-product-policy privacy-policy-conductor" id="conductor">
-            <div className="privacy-policy-title"><span>02 · Organization control plane</span><h2>Evo Conductor</h2><p>The deployment operator controls storage, access, telemetry level, integrations, and retention.</p></div>
-            <div className="privacy-facts"><div><span>Default storage</span><strong>Operator selected</strong></div><div><span>Primary controller</span><strong>Your organization</strong></div><div><span>Access</span><strong>Role governed</strong></div><div><span>Retention</span><strong>Operator policy</strong></div></div>
-
-            <div className="privacy-subgrid">
-              <section><h3>Information processed</h3><ul><li>Member identity, account details, roles, teams, tags, and account status.</li><li>Password or SSO identifiers, browser sessions, and revocable connection tokens.</li><li>Shared agents, Skills, plugins, MCP resources, versions, and access policies.</li><li>Secrets metadata, resource inventory, installations, feedback, and synchronization state.</li><li>Configured levels of usage, request, model, tool, cost, and effectiveness telemetry.</li></ul></section>
-              <section><h3>How it is used</h3><ul><li>Authenticate and authorize members.</li><li>Publish and deliver governed resources.</li><li>Apply role, team, and member access policy.</li><li>Coordinate realtime resource invalidation and sync.</li><li>Provide usage, reliability, and effectiveness reporting when enabled.</li></ul></section>
-              <section><h3>Operator responsibilities</h3><p>The operator chooses SQLite or another supported database, object storage, SSO, external integrations, telemetry level, member access, and retention. It must provide members with any additional notice required by its jurisdiction or employment relationship.</p></section>
-              <section><h3>Member controls</h3><ul><li>Review resources and access granted through the console.</li><li>Create or revoke personal connection secrets where allowed.</li><li>Contact the organization administrator for access, correction, deletion, export, or retention requests.</li><li>Disconnect the EvoFlux installation from the Conductor instance.</li></ul></section>
-            </div>
-          </section>
-
           <section className="policy-section privacy-product-policy privacy-policy-bridge" id="webbridge">
-            <div className="privacy-policy-title"><span>03 · Browser extension</span><h2>EvoFlux WebBridge</h2><p>Browser access is session-bound, visible, and supervised by the user.</p></div>
+            <div className="privacy-policy-title"><span>02 · Browser extension</span><h2>EvoFlux WebBridge</h2><p>Browser access is session-bound, visible, and supervised by the user.</p></div>
             <div className="privacy-facts"><div><span>Default storage</span><strong>Browser + EvoFlux</strong></div><div><span>Control</span><strong>User supervised</strong></div><div><span>Remote code</span><strong>None</strong></div><div><span>Tab access</span><strong>Authorized session</strong></div></div>
 
             <div className="privacy-subgrid">
@@ -116,34 +101,34 @@ export default function PrivacyPage() {
           </section>
 
           <section className="policy-section" id="shared">
-            <h2>6. Shared practices</h2>
+            <h2>5. Shared practices</h2>
             <h3>How information is used</h3><p>Across the Services, information is processed to deliver and secure features, execute your instructions through selected models and tools, maintain state and evidence, provide updates and documentation, operate configured organization features, and respond to support, security, privacy, and legal requests.</p>
-            <h3>When information is shared</h3><p>We do not sell personal information or share it for cross-context behavioral advertising. Information may be disclosed to hosting and security providers; services you configure or invoke; authorized Conductor operators and members; or where necessary to protect users, investigate abuse, comply with law, or complete a reorganization subject to appropriate safeguards.</p>
+            <h3>When information is shared</h3><p>We do not sell personal information or share it for cross-context behavioral advertising. Information may be disclosed to hosting and security providers; services you configure or invoke; or where necessary to protect users, investigate abuse, comply with law, or complete a reorganization subject to appropriate safeguards.</p>
             <p>Public Git repositories, issues, discussions, and contributions are public by design. Do not publish secrets or personal information you do not want disclosed.</p>
             <h3>Legal bases</h3><p>Where applicable law requires a legal basis, processing may rely on performance of a contract, legitimate interests in operating secure Services, compliance with law, or consent. Consent may be withdrawn for future processing where it is the basis.</p>
           </section>
 
           <section className="policy-section" id="security">
-            <h2>7. Security and retention</h2>
-            <p>EvoFlux uses scoped permissions, sandbox policy, outbound-data controls, credential storage, inspectable history, and signed update mechanisms. Conductor supports role-based access, revocable sessions and tokens, and deployment-controlled storage. WebBridge uses explicit browser-control handoffs and bounded operational state.</p>
-            <ul><li><strong>EvoFlux:</strong> local information remains until you delete it, remove application data, or a feature-specific rule removes it.</li><li><strong>Conductor:</strong> retention is controlled by the deployment operator.</li><li><strong>WebBridge:</strong> pending handoffs, watches, drafts, bindings, and captured artifacts use bounded or feature-specific retention.</li><li><strong>Website:</strong> security logs are retained only as reasonably necessary for operations, abuse prevention, and legal compliance.</li></ul>
+            <h2>6. Security and retention</h2>
+            <p>EvoFlux uses scoped permissions, sandbox policy, outbound-data controls, credential storage, inspectable history, and signed update mechanisms. WebBridge uses explicit browser-control handoffs and bounded operational state.</p>
+            <ul><li><strong>EvoFlux:</strong> local information remains until you delete it, remove application data, or a feature-specific rule removes it.</li><li><strong>WebBridge:</strong> pending handoffs, watches, drafts, bindings, and captured artifacts use bounded or feature-specific retention.</li><li><strong>Website:</strong> security logs are retained only as reasonably necessary for operations, abuse prevention, and legal compliance.</li></ul>
             <p>No system guarantees absolute security. Keep software current, review permissions, protect credentials, and report suspected vulnerabilities through a private security channel.</p>
           </section>
 
           <section className="policy-section" id="transfers">
-            <h2>8. International transfers</h2>
+            <h2>7. International transfers</h2>
             <p>The website and connected services may process information in countries other than your own. When required, appropriate transfer safeguards apply. Your selected model, cloud, plugin, or organization providers may use different locations; review their documentation before connecting sensitive work.</p>
           </section>
 
           <section className="policy-section" id="rights">
-            <h2>9. Your rights and choices</h2>
+            <h2>8. Your rights and choices</h2>
             <p>Depending on where you live, you may have rights to access, correct, delete, restrict, object to, or receive a portable copy of personal information, and to appeal or complain to a data protection authority.</p>
-            <ul><li>Use EvoFlux and WebBridge controls for local data, connections, permissions, and browser access.</li><li>For organization-managed Conductor data, contact the organization administrator first.</li><li>For website or project-maintainer requests, contact the address below. Verification may be required.</li></ul>
+            <ul><li>Use EvoFlux and WebBridge controls for local data, connections, permissions, and browser access.</li><li>For website or project-maintainer requests, contact the address below. Verification may be required.</li></ul>
           </section>
 
-          <section className="policy-section" id="children"><h2>10. Children</h2><p>The Services are intended for software professionals and organizations, not children under 13 or the minimum age required by local law. We do not knowingly collect children&apos;s personal information through this website.</p></section>
-          <section className="policy-section" id="changes"><h2>11. Changes</h2><p>We may update this policy when Services, providers, or legal requirements change. The revised version and effective date will be posted here. Material changes may also be announced in release notes or another appropriate channel.</p></section>
-          <section className="policy-section" id="contact"><h2>12. Contact</h2><p>For privacy questions or requests, email <a href="mailto:privacy@evoelsewhere.asia">privacy@evoelsewhere.asia</a>. For security vulnerabilities, use the private security reporting channel provided in the relevant evoelsewhere GitHub repository.</p><p>This product-operational draft should be reviewed against the final hosting setup, organization identity, contact channels, and applicable law before public launch.</p></section>
+          <section className="policy-section" id="children"><h2>9. Children</h2><p>The Services are intended for software professionals and organizations, not children under 13 or the minimum age required by local law. We do not knowingly collect children&apos;s personal information through this website.</p></section>
+          <section className="policy-section" id="changes"><h2>10. Changes</h2><p>We may update this policy when Services, providers, or legal requirements change. The revised version and effective date will be posted here. Material changes may also be announced in release notes or another appropriate channel.</p></section>
+          <section className="policy-section" id="contact"><h2>11. Contact</h2><p>For privacy questions or requests, email <a href="mailto:privacy@evoelsewhere.asia">privacy@evoelsewhere.asia</a>. For security vulnerabilities, use the private security reporting channel provided in the relevant evoelsewhere GitHub repository.</p><p>This product-operational draft should be reviewed against the final hosting setup, organization identity, contact channels, and applicable law before public launch.</p></section>
         </article>
       </div>
 

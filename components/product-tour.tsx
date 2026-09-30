@@ -10,10 +10,10 @@ const features = [
     points: ['Outcome-first execution', 'Files, browser, memory, scheduler', 'Temporary or durable workspaces'],
   },
   {
-    id: 'coding', eyebrow: 'Coding + EASD', title: 'Build beside the code and its specification.',
-    description: 'Coding mode keeps the agent conversation, repository context, source changes, and Evo Agent Specs in one inspectable project surface.',
-    image: '/showcase/evoflux-light-coding-easd.png', alt: 'EvoFlux Coding mode with an agent conversation and Evo Agent Specs setup panel in the light theme',
-    points: ['Multi-repository projects', 'Evo Agent Specs', 'Git and code context'],
+    id: 'coding', eyebrow: 'Coding mode', title: 'Build beside the code and its context.',
+    description: 'Coding mode keeps the agent conversation, repository context, source changes, and project tools in one inspectable surface.',
+    image: '/showcase/coding-workspace.png', alt: 'EvoFlux Coding mode with an agent conversation and repository context',
+    points: ['Repository-aware projects', 'Terminal and Git context', 'Focused implementation'],
   },
   {
     id: 'models', eyebrow: 'Model providers', title: 'Choose the right model for every role.',

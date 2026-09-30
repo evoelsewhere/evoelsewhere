@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FiArrowDown, FiCpu, FiExternalLink, FiFileText, FiGitBranch, FiUsers, FiX } from 'react-icons/fi';
+import { FiArrowDown, FiCpu, FiExternalLink, FiFileText, FiUsers, FiX } from 'react-icons/fi';
 
 const RELEASE_VERSION = '2.0.3';
 const STORAGE_KEY = `evoflux-release-${RELEASE_VERSION}-dismissed`;
@@ -79,13 +79,12 @@ export function ReleaseAnnouncement() {
         <div className="release-modal-content">
           <p className="release-modal-kicker"><i /> Released · September 15, 2026</p>
           <h2 id="release-modal-title">EvoFlux 2.0.3<br />is ready.</h2>
-          <p id="release-modal-description" className="release-modal-intro">A focused maintenance update for updater recovery, coding skill routing, and EASD workspace correctness.</p>
+          <p id="release-modal-description" className="release-modal-intro">A focused maintenance update for updater recovery, coding skill routing, and workspace reliability.</p>
 
           <div className="release-modal-highlights" aria-label="Release highlights">
             <article><FiFileText aria-hidden="true" /><div><strong>Updater recovery</strong><p>See update progress, understand failures, and keep the desktop window usable when an update cannot complete.</p></div></article>
             <article><FiUsers aria-hidden="true" /><div><strong>Coding skill routing</strong><p>Thirteen overlapping coding skills are consolidated into four focused hubs with refreshed references and eval coverage.</p></div></article>
             <article><FiCpu aria-hidden="true" /><div><strong>Consistent observation</strong><p>Shared routing hubs now own observation limits so coding workflows use predictable context budgets.</p></div></article>
-            <article><FiGitBranch aria-hidden="true" /><div><strong>EASD workspace correctness</strong><p>Runs keep the workspace selected for the run instead of inheriting one from a linked chat request.</p></div></article>
           </div>
 
           <div className="release-modal-actions">

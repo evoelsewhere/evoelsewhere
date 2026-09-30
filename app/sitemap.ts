@@ -13,18 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: absoluteUrl('/evo-agent-specification-driven-development'),
-      lastModified: new Date('2026-08-26'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: absoluteUrl('/governance'),
-      lastModified: new Date('2026-08-27'),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
       url: absoluteUrl('/privacy'),
       lastModified: new Date('2026-08-26'),
       changeFrequency: 'yearly',

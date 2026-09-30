@@ -32,7 +32,7 @@ const signalItems = ['briefs', 'specialists', 'browser work', 'coding', 'memory'
 
 const workspacePoints = [
   ['Work mode', 'Research, documents, data, scheduling, and browser tasks.'],
-  ['Coding mode', 'Repository context, terminal, Git, language servers, and EASD.'],
+  ['Coding mode', 'Repository context, terminal, Git, language servers, and project tools.'],
   ['Agent teams', 'One lead with specialists that have a clear role and boundary.'],
   ['Any model', 'Hosted, routed, subscription, cloud, or local providers.'],
 ];
@@ -110,12 +110,11 @@ export default function Home() {
             <ul>
               {workspacePoints.map(([label, copy]) => <li key={label}><FiCheck aria-hidden="true" /><span><strong>{label}</strong>{copy}</span></li>)}
             </ul>
-            <Link className="text-link" href="/evo-agent-specification-driven-development">See how EASD keeps work honest <FiArrowUpRight aria-hidden="true" /></Link>
           </div>
           <figure className="workspace-image">
-            <div className="workspace-image-caption"><span>LIVE PREVIEW</span><span>coding / easd</span></div>
+            <div className="workspace-image-caption"><span>LIVE PREVIEW</span><span>coding / workspace</span></div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/showcase/evoflux-light-coding-easd.png" alt="EvoFlux coding workspace with an agent conversation and specification panel" />
+            <img src="/showcase/coding-workspace.png" alt="EvoFlux coding workspace with an agent conversation and repository context" />
           </figure>
         </div>
       </section>
