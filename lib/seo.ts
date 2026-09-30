@@ -8,7 +8,7 @@ export const OG_IMAGE = {
   url: '/og.png',
   width: 1929,
   height: 1173,
-  alt: 'EvoFlux desktop workspace with coding agents, tools, and an EASD workflow',
+  alt: 'EvoFlux desktop workspace with coding agents, tools, and local project context',
 };
 
 export function absoluteUrl(path = '/') {
