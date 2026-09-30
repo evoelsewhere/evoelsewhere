@@ -1,37 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FiMoon, FiSun } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
-
-function ThemeToggle() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    const themeTimer = window.setTimeout(() => {
-      setDark(document.documentElement.dataset.theme === 'dark');
-    }, 0);
-
-    return () => window.clearTimeout(themeTimer);
-  }, []);
-
-  function toggleTheme() {
-    const next = !dark;
-    document.documentElement.dataset.theme = next ? 'dark' : 'light';
-    try {
-      window.localStorage.setItem('evoelsewhere-theme', next ? 'dark' : 'light');
-    } catch {
-      // Keep the toggle usable when browser storage is unavailable.
-    }
-    setDark(next);
-  }
-
-  return (
-    <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
-      {dark ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
-    </button>
-  );
-}
+import { useState } from 'react';
 
 export function Brand() {
   return (
@@ -49,13 +19,12 @@ export function SiteHeader() {
     <header className="site-header shell">
       <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
       <nav className={open ? 'header-nav open' : 'header-nav'} aria-label="Primary navigation">
-        <Link href="/#surfaces" onClick={() => setOpen(false)}>Product</Link>
-        <Link href="/#computer-app-control" onClick={() => setOpen(false)}>App control</Link>
-        <Link href="/#webbridge-story" onClick={() => setOpen(false)}>WebBridge</Link>
+        <Link href="/#workspace" onClick={() => setOpen(false)}>Workspace</Link>
+        <Link href="/#control" onClick={() => setOpen(false)}>App control</Link>
+        <Link href="/#webbridge" onClick={() => setOpen(false)}>WebBridge</Link>
         <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
         <a href="https://github.com/evoelsewhere">GitHub</a>
         <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Get EvoFlux ↗</Link>
-        <ThemeToggle />
       </nav>
       <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
         <span /><span />

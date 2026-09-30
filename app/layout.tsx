@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { MotionSystem } from '@/components/motion-system';
 import { absoluteUrl, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 
 import './globals.css';
@@ -112,11 +113,9 @@ const structuredData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <script
-          dangerouslySetInnerHTML={{ __html: `(() => { try { const saved = localStorage.getItem('evoelsewhere-theme'); const theme = saved === 'dark' || saved === 'light' ? saved : 'light'; document.documentElement.dataset.theme = theme; } catch {} })()` }}
-        />
+        <MotionSystem />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
