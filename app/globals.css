@@ -15,8 +15,10 @@ html[data-theme='dark'] body { background: #090d0b; color: var(--ink); }
 html[data-theme='dark'] main { background: transparent !important; }
 html[data-theme='dark'] main::before { content: ''; position: absolute; z-index: -3; inset: -8% -5%; pointer-events: none; background: radial-gradient(620px 440px at 94% 3%, rgb(64 103 158 / .25), transparent 70%), radial-gradient(520px 380px at 7% 6%, rgb(34 76 60 / .16), transparent 72%), linear-gradient(180deg, #090d0b 0%, #0c110e 52%, #090d0b 100%); background-size: 118% 118%, 128% 128%, 100% 100%; animation: site-glow-drift 22s ease-in-out infinite alternate; will-change: transform, background-position; }
 html[data-theme='dark'] main::after { background-image: linear-gradient(rgb(241 242 237 / .045) 1px, transparent 1px), linear-gradient(90deg, rgb(241 242 237 / .045) 1px, transparent 1px); opacity: .62; }
-html[data-theme='dark'] .home-page, html[data-theme='dark'] .easd-page, html[data-theme='dark'] .enterprise-page { background: transparent; }
+html[data-theme='dark'] .home-page, html[data-theme='dark'] .evo-home, html[data-theme='dark'] .easd-page, html[data-theme='dark'] .enterprise-page { background: transparent !important; }
 html[data-theme='dark'] .home-page::after { display: block; }
+html[data-theme='dark'] .evo-home::after { display: block; }
+html[data-theme='dark'] .control-section { background: transparent; border-top: 1px solid rgb(52 58 52 / .62); border-bottom: 1px solid rgb(52 58 52 / .62); }
 html[data-theme='dark'] .ambient-orb { opacity: .18; }
 html[data-theme='dark'] .ambient-field::before { background:radial-gradient(420px circle at var(--ambient-x) var(--ambient-y), rgb(255 255 255 / .08), transparent 68%); }
 html[data-theme='dark'] .site-header { border-bottom-color:rgb(52 58 52 / .82); }
