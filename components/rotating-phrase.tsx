@@ -8,9 +8,6 @@ export function RotatingPhrase() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reduceMotion.matches) return;
-
     const timer = window.setInterval(() => setIndex((current) => (current + 1) % phrases.length), 3200);
     return () => window.clearInterval(timer);
   }, []);
