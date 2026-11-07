@@ -235,15 +235,49 @@ p { margin: 0; }
     radial-gradient(40% 40% at 50% 8%, var(--accent-glow), transparent 70%),
     radial-gradient(30% 30% at 82% 48%, color-mix(in srgb, var(--accent-glow) 55%, transparent), transparent 70%),
     radial-gradient(30% 30% at 14% 52%, color-mix(in srgb, var(--accent-glow) 40%, transparent), transparent 70%);
-  animation: drift 18s ease-in-out infinite alternate;
+  animation: drift 12s ease-in-out infinite alternate;
 }
-@keyframes drift { to { transform: translate3d(2%, 3%, 0) scale(1.06); } }
+@keyframes drift {
+  0% { transform: translate3d(-3%, -2%, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(3%, 4%, 0) scale(1.1) rotate(2deg); }
+  100% { transform: translate3d(-2%, 6%, 0) scale(1.05) rotate(-2deg); }
+}
+/* Site-wide animated aurora behind all content */
+body::before {
+  content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(28% 28% at 20% 30%, var(--accent-glow), transparent 70%),
+    radial-gradient(26% 26% at 80% 20%, color-mix(in srgb, var(--accent-glow) 70%, transparent), transparent 70%),
+    radial-gradient(30% 30% at 60% 80%, color-mix(in srgb, var(--accent-glow) 55%, transparent), transparent 70%);
+  filter: blur(30px); opacity: 0.7;
+  animation: aurora 24s ease-in-out infinite alternate;
+  translate: var(--px, 0) var(--py, 0);
+}
+@keyframes aurora {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(6%, -4%, 0) rotate(8deg) scale(1.12); }
+  100% { transform: translate3d(-6%, 5%, 0) rotate(-6deg) scale(1.05); }
+}
+/* Cursor interaction */
+.cursor-glow {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
+  transition: opacity 0.4s; --mx: 50vw; --my: 30vh;
+  background:
+    radial-gradient(360px circle at var(--mx) var(--my), var(--accent-glow), transparent 70%),
+    linear-gradient(to right, var(--ink-3) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(to bottom, var(--ink-3) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: radial-gradient(260px circle at var(--mx) var(--my), #000, transparent 70%);
+  mask-image: radial-gradient(260px circle at var(--mx) var(--my), #000, transparent 70%);
+  mix-blend-mode: normal;
+}
+@keyframes grid-move { to { background-position: 56px 56px; } }
 .hero-grid {
   position: absolute; inset: 0; z-index: -1;
   background-image: linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(60% 50% at 50% 30%, #000 20%, transparent 75%);
   opacity: 0.6;
+  animation: grid-move 6s linear infinite;
 }
 .hero-copy { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border-radius: 999px; box-shadow: var(--ring); background: color-mix(in srgb, var(--card) 70%, transparent); animation: rise 0.8s 0.05s both cubic-bezier(.2,.7,.2,1); }

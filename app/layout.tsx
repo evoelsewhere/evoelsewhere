@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 
 import { absoluteUrl, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/seo';
 
+import { CursorGlow } from '@/components/cursor-glow';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
+        <CursorGlow />
         {children}
       </body>
     </html>
