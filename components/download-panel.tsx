@@ -2,162 +2,126 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa';
+import { FiArrowDown, FiArrowUpRight } from 'react-icons/fi';
 
 type Platform = 'mac' | 'windows' | 'linux' | null;
-type ReleaseStatus = 'loading' | 'ready' | 'fallback';
 
-type ReleaseAsset = {
-  name: string;
-  browser_download_url: string;
-  size: number;
-};
+type ReleaseAsset = { name: string; browser_download_url: string; size: number };
+type GithubRelease = { tag_name: string; html_url: string; draft?: boolean; prerelease?: boolean; assets: ReleaseAsset[] };
 
-type GithubRelease = {
-  tag_name: string;
-  html_url: string;
-  assets: ReleaseAsset[];
-};
-
-const releasesUrl = 'https://github.com/evoelsewhere/evoflux/releases';
-const latestReleaseApi = 'https://api.github.com/repos/evoelsewhere/evoflux/releases/latest';
-const trustedDownloadPrefix = 'https://github.com/evoelsewhere/evoflux/releases/download/';
-
-const fallbackRelease: GithubRelease = {
-  tag_name: 'v3.0.2',
-  html_url: `${releasesUrl}/tag/v3.0.2`,
-  assets: [
-    { name: 'EvoFlux_3.0.2_aarch64.dmg', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_aarch64.dmg`, size: 0 },
-    { name: 'EvoFlux_3.0.2_x64.dmg', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_x64.dmg`, size: 0 },
-    { name: 'EvoFlux_3.0.2_x64-setup.exe', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_x64-setup.exe`, size: 0 },
-    { name: 'EvoFlux_3.0.2_amd64.deb', browser_download_url: `${releasesUrl}/download/v3.0.2/EvoFlux_3.0.2_amd64.deb`, size: 0 },
-  ],
-};
+const REPO = 'evoelsewhere/evo-harness';
+const releasesUrl = `https://github.com/${REPO}/releases`;
+const releasesApi = `https://api.github.com/repos/${REPO}/releases?per_page=20`;
+/** Releases before 4.0 are the earlier product and are not offered here. */
+const FIRST_MAJOR = 4;
+const trustedDownloadPrefix = `${releasesUrl}/download/`;
 
 function isGithubRelease(value: unknown): value is GithubRelease {
   if (!value || typeof value !== 'object') return false;
   const release = value as Partial<GithubRelease>;
   return (
     typeof release.tag_name === 'string' &&
-    release.tag_name.length > 0 &&
     typeof release.html_url === 'string' &&
     release.html_url.startsWith(`${releasesUrl}/tag/`) &&
     Array.isArray(release.assets) &&
-    release.assets.every((asset) => (
-      asset &&
-      typeof asset.name === 'string' &&
-      typeof asset.browser_download_url === 'string' &&
-      typeof asset.size === 'number'
-    ))
+    release.assets.every((asset) => asset && typeof asset.name === 'string' && typeof asset.browser_download_url === 'string' && typeof asset.size === 'number')
   );
 }
 
 function findAsset(assets: ReleaseAsset[], pattern: RegExp) {
-  return assets.find((asset) => (
-    pattern.test(asset.name) &&
-    asset.browser_download_url.startsWith(trustedDownloadPrefix)
-  ));
+  return assets.find((asset) => pattern.test(asset.name) && asset.browser_download_url.startsWith(trustedDownloadPrefix));
 }
 
-function fileSize(bytes?: number) {
-  if (!bytes) return '';
-  return `${Math.round(bytes / 1024 / 1024)} MB`;
+function size(bytes?: number) {
+  return bytes ? ` · ${Math.round(bytes / 1024 / 1024)} MB` : '';
 }
 
-function downloadText(label: string, asset?: ReleaseAsset) {
-  const size = fileSize(asset?.size);
-  return `${label}${size ? ` · ${size}` : ''} ↓`;
+function detectPlatform(): Platform {
+  const value = `${navigator.platform} ${navigator.userAgent}`.toLowerCase();
+  if (value.includes('mac')) return 'mac';
+  if (value.includes('win')) return 'windows';
+  if (value.includes('linux')) return 'linux';
+  return null;
 }
 
-function DownloadLink({ asset, children }: { asset?: ReleaseAsset; children: string }) {
-  if (!asset) return <a href={releasesUrl}>{children} ↗</a>;
-  return <a href={asset.browser_download_url}>{downloadText(children, asset)}</a>;
-}
-
-export function DownloadPanel() {
-  const [detected, setDetected] = useState<Platform>(null);
-  const [release, setRelease] = useState<GithubRelease>(fallbackRelease);
-  const [status, setStatus] = useState<ReleaseStatus>('loading');
-
+/** The latest release's installers, straight from GitHub Releases. */
+function useLatestRelease() {
+  const [release, setRelease] = useState<GithubRelease | null>(null);
+  const [platform, setPlatform] = useState<Platform>(null);
   useEffect(() => {
-    const value = `${navigator.platform} ${navigator.userAgent}`.toLowerCase();
-    const platform = value.includes('mac')
-      ? 'mac'
-      : value.includes('win')
-        ? 'windows'
-        : value.includes('linux')
-          ? 'linux'
-          : null;
-    const detectionTimer = window.setTimeout(() => setDetected(platform), 0);
-
+    const timer = window.setTimeout(() => setPlatform(detectPlatform()), 0);
     const controller = new AbortController();
-    fetch(latestReleaseApi, {
-      headers: { Accept: 'application/vnd.github+json' },
-      signal: controller.signal,
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
-        return response.json() as Promise<unknown>;
+    fetch(releasesApi, { headers: { Accept: 'application/vnd.github+json' }, signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((value: unknown) => {
+        if (!Array.isArray(value)) return;
+        const latest = value.find(
+          (item): item is GithubRelease =>
+            isGithubRelease(item) && !item.draft && !item.prerelease && Number(/^v?(\d+)/.exec(item.tag_name)?.[1] ?? 0) >= FIRST_MAJOR,
+        );
+        if (latest) setRelease(latest);
       })
-      .then((value) => {
-        if (!isGithubRelease(value)) throw new Error('Invalid GitHub release response');
-        setRelease(value);
-        setStatus('ready');
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === 'AbortError') return;
-        setStatus('fallback');
-      });
-
+      .catch(() => undefined);
     return () => {
-      window.clearTimeout(detectionTimer);
+      window.clearTimeout(timer);
       controller.abort();
     };
   }, []);
 
-  const downloads = useMemo(() => ({
-    macArm: findAsset(release.assets, /(?:aarch64|arm64|apple[-_ ]?silicon).*\.dmg$|\.dmg.*(?:aarch64|arm64|apple[-_ ]?silicon)/i),
-    macIntel: findAsset(release.assets, /(?:x64|x86_64|intel).*\.dmg$|\.dmg.*(?:x64|x86_64|intel)/i),
-    windows: findAsset(release.assets, /(?:x64|x86_64|amd64).*(?:setup\.)?(?:exe|msi)$/i),
-    linux: findAsset(release.assets, /(?:x64|x86_64|amd64).*\.deb$|\.deb.*(?:x64|x86_64|amd64)/i),
-  }), [release]);
+  const assets = useMemo(() => {
+    const list = release?.assets ?? [];
+    return {
+      macArm: findAsset(list, /(aarch64|arm64).*\.dmg$/i),
+      macIntel: findAsset(list, /(x64|x86_64|intel).*\.dmg$/i),
+      windows: findAsset(list, /(x64|x86_64|amd64).*(setup\.exe|\.msi)$/i),
+      linux: findAsset(list, /(amd64|x86_64).*\.deb$/i),
+    };
+  }, [release]);
 
-  const platformName = detected === 'mac' ? 'macOS' : detected === 'windows' ? 'Windows' : detected === 'linux' ? 'Linux' : null;
-  const releasePage = release.html_url.startsWith(`${releasesUrl}/tag/`) ? release.html_url : releasesUrl;
+  return { release, platform, assets };
+}
 
+function AssetLink({ asset, label }: { asset?: ReleaseAsset; label: string }) {
+  if (!asset) return <a className="dl-link" href={releasesUrl}>{label} <FiArrowUpRight /></a>;
+  return <a className="dl-link" href={asset.browser_download_url}>{label}{size(asset.size)} <FiArrowDown /></a>;
+}
+
+/** The hero's main button: the installer for this computer when there is one. */
+export function DownloadButton() {
+  const { platform, assets } = useLatestRelease();
+  const asset = platform === 'mac' ? assets.macArm : platform === 'windows' ? assets.windows : platform === 'linux' ? assets.linux : undefined;
+  const name = platform === 'mac' ? 'macOS' : platform === 'windows' ? 'Windows' : platform === 'linux' ? 'Linux' : null;
   return (
-    <div className="download-panel">
-      <div className="download-panel-head">
-        <div>
-          <p className="section-tag">EvoFlux {release.tag_name}</p>
-          <h3>Choose your platform.</h3>
-        </div>
-        <div className="release-meta" aria-live="polite">
-          <p>{platformName ? `Recommended for ${platformName}` : 'Desktop packages · direct from GitHub Releases'}</p>
-          <span className={`release-status ${status}`}>
-            {status === 'loading' ? 'Checking latest release…' : status === 'ready' ? 'Latest stable release' : `Showing ${fallbackRelease.tag_name} · refresh unavailable`}
-          </span>
-        </div>
-      </div>
+    <a className="btn btn-primary btn-lg" href={asset?.browser_download_url ?? '#download'}>
+      <FiArrowDown /> {name ? `Download for ${name}` : 'Download'}
+    </a>
+  );
+}
 
-      <div className="platform-grid">
-        <article className={detected === 'mac' ? 'platform-card recommended' : 'platform-card'}>
-          <div className="platform-card-title"><span className="platform-symbol platform-apple" aria-hidden="true"><FaApple /></span><div><strong>macOS</strong><small>DMG installer</small></div></div>
-          <div className="platform-actions">
-            <DownloadLink asset={downloads.macArm}>Apple silicon</DownloadLink>
-            <DownloadLink asset={downloads.macIntel}>Intel</DownloadLink>
-          </div>
-        </article>
-        <article className={detected === 'windows' ? 'platform-card recommended' : 'platform-card'}>
-          <div className="platform-card-title"><span className="platform-symbol platform-windows" aria-hidden="true"><FaWindows /></span><div><strong>Windows</strong><small>x64 · EXE setup</small></div></div>
-          <div className="platform-actions"><DownloadLink asset={downloads.windows}>Download installer</DownloadLink></div>
-        </article>
-        <article className={detected === 'linux' ? 'platform-card recommended' : 'platform-card'}>
-          <div className="platform-card-title"><span className="platform-symbol platform-linux" aria-hidden="true"><FaLinux /></span><div><strong>Linux</strong><small>x64 · DEB package</small></div></div>
-          <div className="platform-actions"><DownloadLink asset={downloads.linux}>Download package</DownloadLink></div>
-        </article>
+export function DownloadPanel() {
+  const { release, platform, assets } = useLatestRelease();
+  const cards = [
+    { id: 'mac', icon: <FaApple />, name: 'macOS', kind: 'DMG', links: [<AssetLink key="a" asset={assets.macArm} label="Apple silicon" />, <AssetLink key="i" asset={assets.macIntel} label="Intel" />] },
+    { id: 'windows', icon: <FaWindows />, name: 'Windows', kind: 'Installer', links: [<AssetLink key="w" asset={assets.windows} label="Windows x64" />] },
+    { id: 'linux', icon: <FaLinux />, name: 'Linux', kind: 'DEB', links: [<AssetLink key="l" asset={assets.linux} label="Ubuntu / Debian x64" />] },
+  ];
+  return (
+    <div className="dl">
+      <div className="dl-head">
+        <span className="eyebrow">{release ? `Evo Harness ${release.tag_name}` : 'GitHub Releases'}</span>
+        <a href={release?.html_url ?? releasesUrl}>Release notes <FiArrowUpRight /></a>
       </div>
-
-      <div className="download-foot"><span>Apache-2.0 licensed · release data from GitHub</span><a href={releasePage}>Checksums and release notes ↗</a></div>
+      <div className="dl-grid">
+        {cards.map((card) => (
+          <article key={card.id} className={`dl-card ${platform === card.id ? 'is-mine' : ''}`}>
+            <div className="dl-card-title">
+              <span className="dl-icon" aria-hidden="true">{card.icon}</span>
+              <div><strong>{card.name}</strong><small>{card.kind}{platform === card.id ? ' · this computer' : ''}</small></div>
+            </div>
+            <div className="dl-links">{card.links}</div>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }

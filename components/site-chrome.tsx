@@ -1,47 +1,76 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { FiArrowDown, FiGithub } from 'react-icons/fi';
+
+export function Logo({ size = 28 }: { size?: number }) {
+  return (
+    <svg className="logo" width={size} height={size} viewBox="64 64 896 896" aria-hidden="true">
+      <rect x="64" y="64" width="896" height="896" rx="200" fill="#171717" />
+      <g transform="translate(512 512) scale(9.739) rotate(-30) scale(1.25)" fill="none" strokeWidth="8" strokeLinecap="round">
+        <path d="M8 -17H-9A8 8 0 0 0 -17 -9V5" stroke="#ffffff" />
+        <path d="M8 -17H-9A8 8 0 0 0 -17 -9V5" stroke="#ffffff" transform="rotate(180)" />
+        <path d="M-3 0H3" stroke="#0072F5" />
+      </g>
+    </svg>
+  );
+}
 
 export function Brand() {
   return (
     <span className="brand">
-      <span className="brand-tile" aria-hidden="true"><span className="brand-glyph" /></span>
-      <span className="brand-word">evo<span>elsewhere</span></span>
+      <Logo />
+      <span className="brand-word">Evo Harness</span>
     </span>
   );
 }
 
+const LINKS = [
+  ['/#engine', 'Engine'],
+  ['/#features', 'Features'],
+  ['/#webbridge', 'WebBridge'],
+  ['/#download', 'Download'],
+] as const;
+
+/** The top bar, which turns into a floating pill once the page scrolls. */
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
+  const [floating, setFloating] = useState(false);
+  useEffect(() => {
+    const update = () => setFloating(window.scrollY > 120);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
 
   return (
-    <header className="site-header shell">
-      <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
-      <nav className={open ? 'header-nav open' : 'header-nav'} aria-label="Primary navigation">
-        <Link href="/#workspace" onClick={() => setOpen(false)}>Workspace</Link>
-        <Link href="/#control" onClick={() => setOpen(false)}>App control</Link>
-        <Link href="/#webbridge" onClick={() => setOpen(false)}>WebBridge</Link>
-        <Link href="/privacy" onClick={() => setOpen(false)}>Privacy</Link>
-        <a href="https://github.com/evoelsewhere">GitHub</a>
-        <Link className="nav-cta" href="/#download" onClick={() => setOpen(false)}>Get EvoFlux ↗</Link>
-      </nav>
-      <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
-        <span /><span />
-      </button>
+    <header className={`site-header ${floating ? 'is-floating' : ''}`}>
+      <div className="site-header-inner">
+        <Link href="/" aria-label="Evo Harness home"><Brand /></Link>
+        <span className="pill-tag">v4</span>
+        <nav aria-label="Primary navigation">
+          {LINKS.map(([href, label]) => <Link key={href} href={href}>{label}</Link>)}
+        </nav>
+        <span className="grow" />
+        <a className="btn btn-ghost btn-sm" href="https://github.com/evoelsewhere/evo-harness"><FiGithub /> <span className="hide-sm">GitHub</span></a>
+        <Link className="btn btn-primary btn-sm" href="/#download"><FiArrowDown /> Download</Link>
+      </div>
     </header>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer shell">
-      <Link href="/" aria-label="evoelsewhere home"><Brand /></Link>
-      <p>Build elsewhere. Own the outcome.</p>
-      <nav aria-label="Footer navigation">
-        <a href="https://github.com/evoelsewhere/evoflux">EvoFlux</a>
-        <Link href="/privacy">Privacy</Link>
-      </nav>
+    <footer className="site-footer">
+      <div className="shell site-footer-inner">
+        <Link href="/" aria-label="Evo Harness home"><Brand /></Link>
+        <p>Open source · Apache-2.0 · © 2026 evoelsewhere</p>
+        <nav aria-label="Footer navigation">
+          <a href="https://github.com/evoelsewhere/evo-harness">GitHub</a>
+          <a href="https://github.com/evoelsewhere/evo-webbridge">WebBridge</a>
+          <Link href="/privacy">Privacy</Link>
+        </nav>
+      </div>
     </footer>
   );
 }

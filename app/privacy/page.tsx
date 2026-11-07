@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
 import { SITE_NAME } from '@/lib/seo';
 
-const description = 'Privacy practices and data boundaries for EvoFlux Desktop, the EvoFlux WebBridge extension, and evoelsewhere.asia.';
+const description = 'Privacy practices and data boundaries for Evo Harness, the WebBridge extension, and evoelsewhere.asia.';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -12,19 +12,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Privacy Policy | EvoFlux',
+    title: 'Privacy Policy | Evo Harness',
     description,
     url: '/privacy',
     siteName: SITE_NAME,
     images: [],
   },
-  twitter: { card: 'summary', title: 'Privacy Policy | EvoFlux', description, images: [] },
+  twitter: { card: 'summary', title: 'Privacy Policy | Evo Harness', description, images: [] },
 };
 
 const toc = [
   ['scope', 'Scope'],
   ['website', 'Website'],
-  ['evoflux', 'EvoFlux Desktop'],
+  ['evo-harness', 'Evo Harness'],
   ['webbridge', 'WebBridge Extension'],
   ['shared', 'Shared practices'],
   ['security', 'Security & retention'],
@@ -43,12 +43,12 @@ export default function PrivacyPage() {
       <header className="privacy-hero shell">
         <p className="section-tag">Legal / Privacy</p>
         <h1>Two products.<br />Two data boundaries.</h1>
-        <p>This policy separates how EvoFlux Desktop and the EvoFlux WebBridge extension handle information. Shared website and legal practices are covered after the product-specific sections.</p>
-        <div className="privacy-meta"><span>Effective: August 26, 2026</span><span>Version 1.1</span><span>No advertising · No sale of personal data</span></div>
+        <p>This policy separates how Evo Harness and the WebBridge extension handle information. Shared website and legal practices are covered after the product-specific sections.</p>
+        <div className="privacy-meta"><span>Effective: November 7, 2026</span><span>Version 2.0</span><span>No advertising · No sale of personal data</span></div>
       </header>
 
       <nav className="privacy-product-grid shell" aria-label="Product privacy areas">
-        <a href="#evoflux" className="privacy-product-card privacy-product-flux"><span>01 · Desktop</span><strong>EvoFlux</strong><p>Local workspace, agents, models, tools, memory, and artifacts.</p><b>Local by default →</b></a>
+        <a href="#evo-harness" className="privacy-product-card privacy-product-flux"><span>01 · Desktop</span><strong>Evo Harness</strong><p>Local workspace, agents, models, tools, memory, and artifacts.</p><b>Local by default →</b></a>
         <a href="#webbridge" className="privacy-product-card privacy-product-bridge"><span>02 · Browser extension</span><strong>WebBridge</strong><p>Authorized tabs, page context, screenshots, Side Chat, and browser actions.</p><b>User supervised →</b></a>
       </nav>
 
@@ -61,12 +61,12 @@ export default function PrivacyPage() {
         <article className="privacy-policy">
           <div className="privacy-summary">
             <strong>The short version</strong>
-            <p>EvoFlux keeps work on your device by default. WebBridge acts only for browser tabs connected to an authorized EvoFlux session. Data leaves these boundaries only when a feature, provider, tool, or user configuration requires it.</p>
+            <p>Evo Harness keeps work on your device by default. WebBridge acts only for browser tabs connected to an authorized Evo Harness session. Data leaves these boundaries only when a feature, provider, tool, or user configuration requires it.</p>
           </div>
 
           <section className="policy-section" id="scope">
             <h2>1. Scope</h2>
-            <p>This policy applies to <strong>evoelsewhere.asia</strong>, EvoFlux Desktop, and the EvoFlux WebBridge browser extension.</p>
+            <p>This policy applies to <strong>evoelsewhere.asia</strong>, Evo Harness, and the WebBridge browser extension.</p>
             <p>Open-source code, issues, discussions, releases, and downloads hosted by GitHub are subject to GitHub&apos;s privacy terms. Model providers, MCP servers, plugins, cloud platforms, and other connected services apply their own practices.</p>
           </section>
 
@@ -76,26 +76,26 @@ export default function PrivacyPage() {
             <div className="privacy-facts"><div><span>Analytics</span><strong>None configured</strong></div><div><span>Advertising</span><strong>None</strong></div><div><span>Marketing account</span><strong>Not required</strong></div><div><span>Security logs</span><strong>Operational only</strong></div></div>
           </section>
 
-          <section className="policy-section privacy-product-policy privacy-policy-flux" id="evoflux">
-            <div className="privacy-policy-title"><span>01 · Desktop workspace</span><h2>EvoFlux</h2><p>Personal execution runs locally unless you explicitly connect an external service.</p></div>
+          <section className="policy-section privacy-product-policy privacy-policy-flux" id="evo-harness">
+            <div className="privacy-policy-title"><span>01 · Desktop workspace</span><h2>Evo Harness</h2><p>Personal execution runs locally unless you explicitly connect an external service.</p></div>
             <div className="privacy-facts"><div><span>Default storage</span><strong>Your device</strong></div><div><span>Primary controller</span><strong>You</strong></div><div><span>External data</span><strong>Feature-dependent</strong></div><div><span>Retention</span><strong>User controlled</strong></div></div>
 
             <div className="privacy-subgrid">
-              <section><h3>Information processed</h3><ul><li>Workspace paths, project files, repository metadata, code indexes, and language-server diagnostics.</li><li>Prompts, agent messages, tool results, plans, specifications, evidence, memory, schedules, and generated artifacts.</li><li>Agent, model, skill, plugin, MCP, permission, sandbox, connection, and appearance settings.</li><li>Operational logs, local telemetry, performance metrics, and diagnostics.</li><li>Credentials or tokens for providers and integrations you configure, stored through designated credential storage.</li></ul></section>
-              <section><h3>How it is used</h3><ul><li>Execute Work and Coding requests.</li><li>Maintain project and session context.</li><li>Coordinate agents and verify their work.</li><li>Apply sandbox, permission, and outbound-data policies.</li><li>Diagnose failures and support updates.</li></ul></section>
-              <section><h3>When data leaves the device</h3><p>Local-first does not mean never leaves the device. EvoFlux sends the information required for an action when you choose a hosted model, remote MCP server, plugin, cloud service, website, or other connected provider.</p><p>The provider receives only what the selected action and current permission scope make available, but its own privacy and retention terms then apply.</p></section>
+              <section><h3>Information processed</h3><ul><li>Workspace paths, project files, repository metadata, Git worktrees, and language-server diagnostics.</li><li>Prompts, agent messages, tool results, chat transcripts, memory, scheduled tasks, usage records, and generated files.</li><li>Agent, model, skill, plugin, MCP, permission, sandbox, connection, and appearance settings.</li><li>Operational logs, local telemetry, performance metrics, and diagnostics.</li><li>Credentials or tokens for providers and integrations you configure, stored through designated credential storage.</li></ul></section>
+              <section><h3>How it is used</h3><ul><li>Run your requests in chats, subagents and scheduled tasks.</li><li>Maintain project and session context.</li><li>Coordinate agents and verify their work.</li><li>Apply sandbox, permission, and outbound-data policies.</li><li>Diagnose failures and support updates.</li></ul></section>
+              <section><h3>When data leaves the device</h3><p>Local-first does not mean never leaves the device. Evo Harness sends the information required for an action when you choose a hosted model, remote MCP server, plugin, cloud service, website, or other connected provider.</p><p>The provider receives only what the selected action and current permission scope make available, but its own privacy and retention terms then apply.</p></section>
               <section><h3>Your controls</h3><ul><li>Delete local sessions, memory, artifacts, configuration, and application data.</li><li>Disconnect providers and revoke integration credentials.</li><li>Disable plugins, Skills, and MCP servers.</li><li>Change filesystem, process, shell, and outbound-data permissions.</li><li>Choose a local model instead of a hosted model where supported.</li></ul></section>
             </div>
           </section>
 
           <section className="policy-section privacy-product-policy privacy-policy-bridge" id="webbridge">
-            <div className="privacy-policy-title"><span>02 · Browser extension</span><h2>EvoFlux WebBridge</h2><p>Browser access is session-bound, visible, and supervised by the user.</p></div>
-            <div className="privacy-facts"><div><span>Default storage</span><strong>Browser + EvoFlux</strong></div><div><span>Control</span><strong>User supervised</strong></div><div><span>Remote code</span><strong>None</strong></div><div><span>Tab access</span><strong>Authorized session</strong></div></div>
+            <div className="privacy-policy-title"><span>02 · Browser extension</span><h2>WebBridge</h2><p>Browser access is session-bound, visible, and supervised by the user.</p></div>
+            <div className="privacy-facts"><div><span>Default storage</span><strong>Browser + Evo Harness</strong></div><div><span>Control</span><strong>User supervised</strong></div><div><span>Remote code</span><strong>None</strong></div><div><span>Tab access</span><strong>Authorized session</strong></div></div>
 
             <div className="privacy-subgrid">
               <section><h3>Information processed</h3><ul><li>Website content, URLs, tab IDs, titles, lifecycle state, and page metadata.</li><li>Screenshots, selected text, elements, readable page context, and files you attach.</li><li>Browser actions, Side Chat messages, page watches, task recordings, and handoff state.</li><li>Extension settings, connection state, tab/session bindings, editable drafts, and temporary operational state.</li></ul></section>
               <section><h3>Browser capabilities</h3><ul><li>Navigate and manage authorized tabs.</li><li>Read pages, elements, screenshots, and accessibility information.</li><li>Perform supervised clicks, typing, selection, waits, and responsive testing.</li><li>Show Side Chat, context actions, teach mode, and page watches.</li></ul></section>
-              <section><h3>When content is submitted</h3><p>Context-menu actions create an editable Side Chat draft; nothing is sent until you review and submit it. Page context, screenshots, selections, and files explicitly sent to EvoFlux may then be provided to the model or tool you selected.</p><p>WebBridge does not use remotely hosted executable code. Automation code ships with the extension package.</p></section>
+              <section><h3>When content is submitted</h3><p>Context-menu actions create an editable Side Chat draft; nothing is sent until you review and submit it. Page context, screenshots, selections, and files explicitly sent to Evo Harness may then be provided to the model or tool you selected.</p><p>WebBridge does not use remotely hosted executable code. Automation code ships with the extension package.</p></section>
               <section><h3>Your controls</h3><ul><li>Take control to pause agent commands or release control entirely.</li><li>Resume only when ready.</li><li>Cancel page watches and task recording.</li><li>Delete captured artifacts where the feature provides deletion.</li><li>Disconnect or uninstall the extension.</li><li>Secret handoff is designed so values entered directly on a page are not read back into the agent transcript.</li></ul></section>
             </div>
           </section>
@@ -110,8 +110,8 @@ export default function PrivacyPage() {
 
           <section className="policy-section" id="security">
             <h2>6. Security and retention</h2>
-            <p>EvoFlux uses scoped permissions, sandbox policy, outbound-data controls, credential storage, inspectable history, and signed update mechanisms. WebBridge uses explicit browser-control handoffs and bounded operational state.</p>
-            <ul><li><strong>EvoFlux:</strong> local information remains until you delete it, remove application data, or a feature-specific rule removes it.</li><li><strong>WebBridge:</strong> pending handoffs, watches, drafts, bindings, and captured artifacts use bounded or feature-specific retention.</li><li><strong>Website:</strong> security logs are retained only as reasonably necessary for operations, abuse prevention, and legal compliance.</li></ul>
+            <p>Evo Harness uses scoped permissions, sandbox policy, outbound-data controls, credential storage, inspectable history, and signed update mechanisms. WebBridge uses explicit browser-control handoffs and bounded operational state.</p>
+            <ul><li><strong>Evo Harness:</strong> local information remains until you delete it, remove application data, or a feature-specific rule removes it.</li><li><strong>WebBridge:</strong> pending handoffs, watches, drafts, bindings, and captured artifacts use bounded or feature-specific retention.</li><li><strong>Website:</strong> security logs are retained only as reasonably necessary for operations, abuse prevention, and legal compliance.</li></ul>
             <p>No system guarantees absolute security. Keep software current, review permissions, protect credentials, and report suspected vulnerabilities through a private security channel.</p>
           </section>
 
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
           <section className="policy-section" id="rights">
             <h2>8. Your rights and choices</h2>
             <p>Depending on where you live, you may have rights to access, correct, delete, restrict, object to, or receive a portable copy of personal information, and to appeal or complain to a data protection authority.</p>
-            <ul><li>Use EvoFlux and WebBridge controls for local data, connections, permissions, and browser access.</li><li>For website or project-maintainer requests, contact the address below. Verification may be required.</li></ul>
+            <ul><li>Use Evo Harness and WebBridge controls for local data, connections, permissions, and browser access.</li><li>For website or project-maintainer requests, contact the address below. Verification may be required.</li></ul>
           </section>
 
           <section className="policy-section" id="children"><h2>9. Children</h2><p>The Services are intended for software professionals and organizations, not children under 13 or the minimum age required by local law. We do not knowingly collect children&apos;s personal information through this website.</p></section>
