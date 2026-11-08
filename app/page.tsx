@@ -128,6 +128,11 @@ export default function Home() {
             <Reveal className="trio-item" delay={80}><strong>Crash-isolated</strong><p>A failing tool or plugin takes down one engine, never the window or your other chats.</p></Reveal>
             <Reveal className="trio-item" delay={160}><strong>Durable</strong><p>Each chat&apos;s transcript is its own file. Close the app mid-run and pick up where it stopped.</p></Reveal>
           </div>
+          <div className="trio">
+            <Reveal className="trio-item" delay={0}><strong>Native Rust engine</strong><p>The engine is compiled Rust, not a bundled script runtime. It starts quickly and needs no Node or Python to run.</p></Reveal>
+            <Reveal className="trio-item" delay={80}><strong>Light on resources</strong><p>Small native processes keep memory and CPU low, so many chats and long runs fit beside your editor and builds.</p></Reveal>
+            <Reveal className="trio-item" delay={160}><strong>Fast and responsive</strong><p>Streaming, file search and tool calls run natively, so the window stays smooth while agents work.</p></Reveal>
+          </div>
         </div>
       </section>
 
