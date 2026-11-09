@@ -3,25 +3,36 @@ import {
   FiArrowUpRight,
   FiBookOpen,
   FiCode,
+  FiCommand,
+  FiEdit3,
+  FiEyeOff,
   FiFileText,
   FiFolder,
   FiGitBranch,
   FiGithub,
   FiGlobe,
+  FiGrid,
+  FiLayers,
+  FiLink,
+  FiMonitor,
+  FiMousePointer,
   FiPackage,
+  FiRotateCcw,
   FiSearch,
+  FiShield,
   FiTerminal,
+  FiZap,
 } from 'react-icons/fi';
 
 import { AppDemo } from '@/components/app-demo';
 import { CopyCommand } from '@/components/copy-command';
 import { DownloadButton, DownloadPanel } from '@/components/download-panel';
 import { EngineDemo } from '@/components/engine-demo';
-import { ApprovalDemo, CustomizeDemo, ModelDemo, SchedulerDemo, SubagentDemo, UsageDemo } from '@/components/feature-demos';
+import { BrowserShowcase, ComputerAppDemo, CustomizeShowcase, OfficeDemo } from '@/components/core-demos';
+import { ApprovalDemo, CodeIntelDemo, ModelDemo, SchedulerDemo, SubagentDemo, UsageDemo } from '@/components/feature-demos';
 import { Reveal } from '@/components/motion';
 import { ProviderMarquee } from '@/components/provider-marquee';
 import { SiteFooter, SiteHeader } from '@/components/site-chrome';
-import { WebBridgeDemo } from '@/components/webbridge-demo';
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -52,10 +63,10 @@ const FEATURES = [
     demo: <ApprovalDemo />,
   },
   {
-    id: 'customize',
-    title: 'Skills, connectors, plugins',
-    text: 'Agent Skills, slash commands, MCP connectors with OAuth, hooks and plugin marketplaces. Turn each one on per project or per chat.',
-    demo: <CustomizeDemo />,
+    id: 'code',
+    title: 'Code it understands',
+    text: 'Language servers for 21 languages install on demand. The agent reads diagnostics, jumps to definitions and finds references before it edits.',
+    demo: <CodeIntelDemo />,
   },
   {
     id: 'scheduler',
@@ -70,6 +81,72 @@ const FEATURES = [
     demo: <UsageDemo />,
   },
 ];
+
+/** The four features the product is built around (section 03). */
+const CORE = [
+  {
+    id: 'customize',
+    nav: 'Customize',
+    icon: <FiCommand />,
+    kicker: 'Customize',
+    title: <>Make it yours.<br /><span className="soft">Per project, per chat.</span></>,
+    text: 'One page for everything that shapes how the agent works: what it knows, what it can reach, what runs around it. Personal settings follow you; project ones live in the repository.',
+    points: [
+      [<FiBookOpen key="i" />, 'Agent Skills and slash commands', 'Folders in the open SKILL.md format, with usage counts and who may run each one.'],
+      [<FiLink key="i" />, 'MCP connectors with OAuth', 'GitHub, Linear, databases and more in one shared pool; switch any of them off per chat.'],
+      [<FiPackage key="i" />, 'Plugins and marketplaces', 'Install bundles of skills, commands, subagents, hooks and connectors from GitHub, any git URL or a folder.'],
+      [<FiZap key="i" />, 'Hooks', 'Commands or web requests on session, prompt and tool events that can block, allow or rewrite a call.'],
+    ],
+    demo: <CustomizeShowcase />,
+  },
+  {
+    id: 'browser',
+    nav: 'Browser',
+    icon: <FiGlobe />,
+    kicker: 'Browser',
+    title: <>Two browsers.<br /><span className="soft">One for the agent, one that stays yours.</span></>,
+    text: 'The agent gets its own browser inside the app and works there while you keep chatting. When the work needs a tab you are already signed in to, WebBridge shares just that tab, through a paired relay you can release at any time.',
+    points: [
+      [<FiMonitor key="i" />, 'Pages float as live cards', 'Each page the agent uses shows over its chat, laid out at desktop size, without opening a panel.'],
+      [<FiMousePointer key="i" />, 'A virtual cursor you can follow', 'See where it clicks before it clicks, and click into the card yourself to take over.'],
+      [<FiTerminal key="i" />, 'Real browser tools', 'Clicks, forms, uploads, console, network, storage, mocks, PDFs and performance traces.'],
+      [<FiShield key="i" />, 'WebBridge for your own Chrome or Edge', 'You choose the tab and what to share; it crosses a policy-checked relay with private data redacted.'],
+    ],
+    demo: <BrowserShowcase />,
+    link: ['https://github.com/evoelsewhere/evo-webbridge', 'Explore WebBridge'],
+  },
+  {
+    id: 'computer-apps',
+    nav: 'Computer apps',
+    icon: <FiGrid />,
+    kicker: 'Computer App Control',
+    badge: 'Preview · Windows',
+    title: <>Work in your apps.<br /><span className="soft">Off your screen.</span></>,
+    text: 'Ask for work in an app you already have open, like a spreadsheet, a document or a chat app. The app moves off your screen while the agent works in it, a card shows it live, and it comes back exactly where it was when the turn ends.',
+    points: [
+      [<FiEyeOff key="i" />, 'Never your mouse or keyboard', 'Input goes to the app in the background: accessibility, the app’s own messages, or a DevTools pipe into web apps it starts.'],
+      [<FiShield key="i" />, 'Every action asks first', 'The prompt lists each click and keystroke as it will run, even in Approve for me. Allow and block apps in Settings.'],
+      [<FiRotateCcw key="i" />, 'It checks its own work', 'Each step reads the app back and says what changed, or that nothing did, instead of guessing from a picture.'],
+      [<FiMonitor key="i" />, 'You stay in charge', 'Stop, Show the app or Close from the card at any moment; a stopped agent cannot take the app again until you allow it.'],
+    ],
+    demo: <ComputerAppDemo />,
+  },
+  {
+    id: 'office',
+    nav: 'Office',
+    icon: <FiLayers />,
+    kicker: 'Office documents',
+    title: <>Decks, docs and sheets.<br /><span className="soft">Built where you can see them.</span></>,
+    text: 'Word, PowerPoint and Excel files open right in the app, rendered natively. Watch a deck or a workbook appear as the agent builds it, point at what should change, and step back through every version it saved.',
+    points: [
+      [<FiLayers key="i" />, 'A real viewer for every file', 'Slides with Normal, Sorter and Reading views, sheets with tabs, a name box and the formula bar, documents with search.'],
+      [<FiZap key="i" />, 'Live while it builds', 'Finished slides and sheets show at once, with placeholders for the rest, and the file opens by itself when it is ready.'],
+      [<FiEdit3 key="i" />, 'Point, then ask', 'Select an area of a slide or a range of cells and say what to change; the request carries exactly what you marked.'],
+      [<FiRotateCcw key="i" />, 'Every version kept', 'Undo, Redo and History step through each saved version. Exact print pages come from an optional runtime.'],
+    ],
+    demo: <OfficeDemo />,
+  },
+] as const;
 
 const TOOLS = [
   [<FiFolder key="i" />, 'Files with a code editor'],
@@ -163,15 +240,47 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="webbridge">
+      <section className="section core" id="core">
         <div className="shell">
-          <Reveal className="section-head">
-            <p className="eyebrow">03 / Companion</p>
-            <h2>Your browser.<br /><span className="soft">Still yours.</span></h2>
-            <p>WebBridge pairs Chrome or Edge with Evo Harness. Share the tab you are already signed in to, pick what matters, and it reaches your chat through a paired, policy-checked relay. Release the tab whenever you want.</p>
-            <a className="text-link" href="https://github.com/evoelsewhere/evo-webbridge">Explore WebBridge <FiArrowUpRight /></a>
+          <Reveal className="section-head center">
+            <p className="eyebrow">03 / Core features</p>
+            <h2>Four things it does<br /><span className="soft">that a chat window can&apos;t.</span></h2>
+            <p>Shape the agent around your work, let it browse for you, hand it the apps you already use, and get real documents back.</p>
           </Reveal>
-          <Reveal delay={100}><WebBridgeDemo /></Reveal>
+          <Reveal className="core-index" delay={60}>
+            {CORE.map((feature, index) => (
+              <a key={feature.id} href={`#${feature.id}`} className="core-index-item">
+                <span className="core-index-n">0{index + 1}</span>
+                {feature.icon}
+                <span>{feature.nav}</span>
+              </a>
+            ))}
+          </Reveal>
+        </div>
+        <div className="shell-wide core-rows">
+          {CORE.map((feature, index) => (
+            <article key={feature.id} id={feature.id} className={`core-row ${index % 2 === 1 ? 'is-flipped' : ''}`}>
+              {feature.id === 'browser' && <span id="webbridge" className="core-anchor" aria-hidden="true" />}
+              <Reveal className="core-copy">
+                <p className="core-kicker">
+                  <span className="core-n">03.{index + 1}</span> {feature.kicker}
+                  {'badge' in feature && <span className="core-badge">{feature.badge}</span>}
+                </p>
+                <h3>{feature.title}</h3>
+                <p className="core-text">{feature.text}</p>
+                <ul className="core-points">
+                  {feature.points.map(([icon, title, text]) => (
+                    <li key={title}>
+                      <span className="core-point-icon">{icon}</span>
+                      <div><strong>{title}</strong><p>{text}</p></div>
+                    </li>
+                  ))}
+                </ul>
+                {'link' in feature && <a className="text-link" href={feature.link[0]}>{feature.link[1]} <FiArrowUpRight /></a>}
+              </Reveal>
+              <Reveal className="core-stage" delay={100}>{feature.demo}</Reveal>
+            </article>
+          ))}
         </div>
       </section>
 

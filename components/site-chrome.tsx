@@ -29,7 +29,7 @@ export function Brand() {
 const LINKS = [
   ['/#engine', 'Engine'],
   ['/#features', 'Features'],
-  ['/#webbridge', 'WebBridge'],
+  ['/#core', 'Core'],
   ['/#download', 'Download'],
 ] as const;
 

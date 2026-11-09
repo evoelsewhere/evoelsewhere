@@ -5,6 +5,7 @@ import {
   FiCalendar,
   FiCheck,
   FiChevronDown,
+  FiCode,
   FiCornerDownLeft,
   FiCpu,
   FiFileText,
@@ -183,6 +184,38 @@ export function CustomizeDemo() {
         <span className="fd-composer-text">
           {step >= 5 ? <><span className="fd-token">/review</span> the retry change</> : typed ? <>{typed}<span className="caret" /></> : 'Ask anything — / for commands'}
         </span>
+      </div>
+    </div>
+  );
+}
+
+// ── Code intelligence ─────────────────────────────────────────────────────
+
+const LSP_MARKS = [500, 1500, 2600, 3600, 4600];
+
+export function CodeIntelDemo() {
+  const { ref, step } = useDemo(LSP_MARKS, 8500);
+  return (
+    <div className="fd fd-lsp" ref={ref}>
+      <div className="fd-code">
+        <div><span className="ln">41</span><span className="t-k">let</span> wait = <span className="t-f">retry_after</span>(&amp;response);</div>
+        <div><span className="ln">42</span><span className="t-k">if</span> attempt &gt; <span className="t-n">3</span> {'{'} <span className="t-k">return</span> Err(error); {'}'}</div>
+        <div><span className="ln">43</span>sleep(<span className={step >= 1 && step < 5 ? 'fd-squiggle' : ''}>wait</span>).<span className="t-k">await</span>;</div>
+        <div><span className="ln">44</span>attempt += <span className="t-n">1</span>;</div>
+      </div>
+      {step >= 2 && step < 5 && (
+        <div className="fd-hover fade-in">
+          <strong>error[E0308]: mismatched types</strong>
+          <span>expected <code>Duration</code>, found <code>Option&lt;Duration&gt;</code></span>
+          <small>rust-analyzer</small>
+        </div>
+      )}
+      {step >= 3 && step < 5 && <div className="fd-step fade-in"><FiCode /> <span className="shimmer">lsp · definition of retry_after</span></div>}
+      {step >= 5 && <div className="fd-step fade-in"><FiCheck className="ok" /> Fixed: <code>sleep(wait.unwrap_or(BACKOFF))</code> · 0 diagnostics</div>}
+      <div className="fd-chips">
+        <span>21 languages</span>
+        <span>installed on demand</span>
+        <span>changed lines in the gutter</span>
       </div>
     </div>
   );
